@@ -1,3 +1,3 @@
 [Vai al File principale](../../Readme.md)
 
-# 1 Lezione 11 Settembre 2025
+# 1 Lezione 18 Settembre 2025
