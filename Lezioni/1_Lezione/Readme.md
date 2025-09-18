@@ -739,6 +739,8 @@ Esistono diversi tipi di legami principali:
 
   - se superchiave -> può diventare indice 
 
+  - per ogni relazione esiste una superchiave (si)
+
 ## NULL
 
 - valore attributo
