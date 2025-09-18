@@ -741,7 +741,13 @@ Esistono diversi tipi di legami principali:
 
   - per ogni relazione esiste una superchiave (si)
 
-  - sicuramente nel db -< una chiave primaria
+  - sicuramente nel db -< una chiave primaria -> evita duplicati 
+
+
+## Chiavi 
+
+- identificare record
+- coorelare tra di loro tabelle 
 
 ## NULL
 
