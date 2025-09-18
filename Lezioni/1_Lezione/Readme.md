@@ -741,6 +741,8 @@ Esistono diversi tipi di legami principali:
 
   - per ogni relazione esiste una superchiave (si)
 
+  - sicuramente nel db -< una chiave primaria
+
 ## NULL
 
 - valore attributo
