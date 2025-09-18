@@ -36,12 +36,14 @@
 - elementi del record -> creano informazioni -> dati che esistono dentro
 - Informazione prima elaborazione
 - Dati
+
   - diversi tipi di dato
 
 - Dati
   - fondamentali per otteneri i dati da non perdere
     - mantenere dati con analisi
       - Dati predittive con analisi
-      - dati in modo persistente 
-        - velocità e non riscrivi dati 
+      - dati in modo persistente
+        - velocità e non riscrivi dati
+        - approcio strutturato con SW -> DBMS (database manage system)
   - Fare backup periodico
