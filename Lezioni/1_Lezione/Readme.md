@@ -285,7 +285,9 @@ TRUNCATE TABLE Studenti;
     - con vincoli d'identità
 
 - vincoli di integrità
-  - posso eliminare solo in determinati casi
-    - se cancelli dati del primitivo elimini anche principlae e se no prima cancelli vincoli e poi quello principale 
 
-- Dati che prendo dati .> da un alra opzione a un altra tabella 
+  - posso eliminare solo in determinati casi
+    - se cancelli dati del primitivo elimini anche principlae e se no prima cancelli vincoli e poi quello principale
+
+- Dati che prendo dati .> da un alra opzione a un altra tabella
+  - utwnti comunicano con DBMS -> con area di sorage permanente
