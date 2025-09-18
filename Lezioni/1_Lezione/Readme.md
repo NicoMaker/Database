@@ -751,6 +751,175 @@ Esistono diversi tipi di legami principali:
 
 - Chiave -> null -> non identificato variabile null -> faccio ipotesi che non ammette valori null
 
+## Vincoli tra tabelle
+
+I vincoli tra tabelle servono a garantire **l’integrità referenziale** dei dati in un database relazionale. Essi definiscono le regole su come le tabelle sono correlate tra loro.
+
+### 1. Chiave primaria (Primary Key)
+
+* Identifica univocamente ogni record di una tabella.
+* Non può contenere valori nulli.
+* Spesso usata come riferimento per altre tabelle.
+
+**Esempio SQL:**
+
+```sql
+CREATE TABLE Clienti (
+    ID INT PRIMARY KEY,
+    Nome VARCHAR(50),
+    Cognome VARCHAR(50)
+);
+```
+
+### 2. Chiave esterna (Foreign Key)
+
+* Stabilisce un legame tra due tabelle.
+* Garantisce che il valore in una colonna corrisponda a un valore esistente in un’altra tabella.
+* Può definire regole di aggiornamento o eliminazione (CASCADE, SET NULL, RESTRICT).
+
+**Esempio SQL:**
+
+```sql
+CREATE TABLE Ordini (
+    ID INT PRIMARY KEY,
+    ClienteID INT,
+    FOREIGN KEY (ClienteID) REFERENCES Clienti(ID)
+);
+```
+
+
+### 3. Vincolo di unicità (Unique)
+
+* Impedisce la duplicazione di valori in una colonna o combinazione di colonne.
+* Può essere applicato anche a più colonne contemporaneamente.
+
+**Esempio SQL:**
+
+```sql
+CREATE TABLE Prodotti (
+    Codice VARCHAR(20) UNIQUE,
+    Nome VARCHAR(50)
+);
+```
+
+### 4. Vincolo di non null (NOT NULL)
+
+* Impedisce l’inserimento di valori nulli in una colonna.
+* Garantisce che un campo contenga sempre un dato valido.
+
+**Esempio SQL:**
+
+```sql
+CREATE TABLE DettagliOrdine (
+    ID INT PRIMARY KEY,
+    OrdineID INT NOT NULL,
+    ProdottoID INT NOT NULL
+);
+```
+
+
+### 5. Vincolo di controllo (CHECK)
+
+* Permette di limitare i valori accettati in una colonna.
+* Utile per rispettare regole aziendali sui dati.
+
+**Esempio SQL:**
+
+```sql
+CREATE TABLE Pagamenti (
+    ID INT PRIMARY KEY,
+    Importo DECIMAL(10,2) CHECK (Importo > 0)
+);
+```
+
+### 6. Vincoli combinati tra tabelle
+
+* Si possono creare regole complesse combinando chiavi primarie, chiavi esterne e vincoli di integrità.
+* Ad esempio, eliminazioni o aggiornamenti a cascata per mantenere la coerenza dei dati tra più tabelle.
+
+**Esempio SQL:**
+
+```sql
+ALTER TABLE DettagliOrdine
+ADD CONSTRAINT FK_Dettagli_Ordini
+FOREIGN KEY (OrdineID) REFERENCES Ordini(ID)
+ON DELETE CASCADE;
+```
+
+
+## Vincoli tra chiavi
+
+I vincoli tra chiavi definiscono le relazioni tra le tabelle e garantiscono l’integrità dei dati. Sono fondamentali nei database relazionali per evitare dati incoerenti o duplicati.
+
+### 1. Chiave primaria (Primary Key)
+
+* Identifica in modo univoco ogni record in una tabella.
+* Non può contenere valori nulli.
+* Ogni tabella può avere una sola chiave primaria.
+* Spesso utilizzata come riferimento da altre tabelle tramite chiavi esterne.
+
+**Esempio concettuale:**
+
+> Tabella `Clienti`: `ID` è la chiave primaria.
+
+
+
+### 2. Chiave esterna (Foreign Key)
+
+* Collega una tabella ad un’altra tramite una colonna che fa riferimento alla chiave primaria di un’altra tabella.
+* Garantisce che i valori inseriti esistano nella tabella di riferimento.
+* Può definire regole di aggiornamento o eliminazione (CASCADE, SET NULL, RESTRICT).
+
+**Esempio concettuale:**
+
+> Tabella `Ordini`: `ClienteID` è chiave esterna che fa riferimento a `Clienti.ID`.
+
+
+### 3. Chiave candidata (Candidate Key)
+
+* Colonna o insieme di colonne che potrebbero diventare chiave primaria.
+* Deve essere unica e non nulla.
+* Una tabella può avere più chiavi candidate, ma una sola diventerà primaria.
+
+**Esempio concettuale:**
+
+> Tabella `Prodotti`: `CodiceProdotto` e `NomeProdotto` potrebbero essere chiavi candidate, ma solo `CodiceProdotto` è scelta come primaria.
+
+
+
+### 4. Chiave alternativa (Alternate Key)
+
+* È una chiave candidata che **non è stata scelta come chiave primaria**.
+* Mantiene l’unicità dei dati come la primaria.
+
+**Esempio concettuale:**
+
+> In `Prodotti`, se `CodiceProdotto` è primaria, `NomeProdotto` può essere chiave alternativa.
+
+
+
+### 5. Chiave composta (Composite Key)
+
+* Chiave formata da due o più colonne.
+* L’unicità è garantita solo combinando tutti i valori delle colonne componenti.
+* Spesso usata in tabelle di associazione (many-to-many).
+
+**Esempio concettuale:**
+
+> Tabella `DettagliOrdine`: chiave composta da `(OrdineID, ProdottoID)` per identificare univocamente ogni riga.
+
+
+### 6. Chiave primaria esterna (Primary Foreign Key)
+
+* Una chiave primaria che è anche chiave esterna verso un’altra tabella.
+* Garantisce che la riga sia univoca e allo stesso tempo esista nella tabella di riferimento.
+
+**Esempio concettuale:**
+
+> Tabella `UtentiSpeciali`: `ID` è chiave primaria e allo stesso tempo chiave esterna verso `Utenti.ID`.
+
+
+
 ## NULL
 
 - valore attributo
