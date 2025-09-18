@@ -948,4 +948,4 @@ La **cardinalità** descrive il numero di elementi presenti in un insieme o la q
 
 ## Esercizi 
 
-- [1 Esercizio](Esercizio/1_esercizio.md))
+- [1 Esercizio](Esercizio/1_esercizio.md)
