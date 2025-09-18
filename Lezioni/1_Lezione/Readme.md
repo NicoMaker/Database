@@ -462,3 +462,5 @@ WHERE Nome = 'Lucia';
 | 5   | Giulia | Esposito | 2300.00   | Finanza         | 2022-11-05     |
 
 > Qui ogni campo `CHAR` occupa **tutta la lunghezza dichiarata**, quindi `"Mario"` è memorizzato come `"Mario                         "` (30 caratteri ora).
+
+
