@@ -223,28 +223,26 @@ TRUNCATE TABLE Studenti;
 - Gestisce la **struttura**, non i dati (quello è compito del DML).
 - È strettamente legato alla definizione dei **metadati** nel catalogo del DBMS.
 
-
 ## Differenza tra DBMS e RDBMS
 
 ### DBMS (Database Management System)
 
-* È un software che permette di **creare, gestire e manipolare** un database.
-* I dati possono essere organizzati in **file, record, gerarchie o tabelle semplici**.
-* Non sempre gestisce le **relazioni** tra i dati.
-* Offre funzionalità base di archiviazione, ricerca e modifica.
+- È un software che permette di **creare, gestire e manipolare** un database.
+- I dati possono essere organizzati in **file, record, gerarchie o tabelle semplici**.
+- Non sempre gestisce le **relazioni** tra i dati.
+- Offre funzionalità base di archiviazione, ricerca e modifica.
 
 **Esempi:** Microsoft Access, dBase.
 
 ### RDBMS (Relational Database Management System)
 
-* È un **tipo di DBMS** basato sul **modello relazionale**.
-* I dati sono organizzati in **tabelle (relazioni)** con righe (tuple) e colonne (attributi).
-* Supporta **chiavi primarie, chiavi esterne e vincoli di integrità**.
-* Gestisce le proprietà **ACID** (Atomicità, Consistenza, Isolamento, Durabilità).
-* Permette query avanzate con **SQL** e relazioni tra più tabelle.
+- È un **tipo di DBMS** basato sul **modello relazionale**.
+- I dati sono organizzati in **tabelle (relazioni)** con righe (tuple) e colonne (attributi).
+- Supporta **chiavi primarie, chiavi esterne e vincoli di integrità**.
+- Gestisce le proprietà **ACID** (Atomicità, Consistenza, Isolamento, Durabilità).
+- Permette query avanzate con **SQL** e relazioni tra più tabelle.
 
 **Esempi:** MySQL, PostgreSQL, Oracle DB, SQL Server.
-
 
 ## Tabella comparativa
 
@@ -258,7 +256,6 @@ TRUNCATE TABLE Studenti;
 | **Accesso multiutente** | Limitato                      | Avanzato                  |
 | **Esempi**              | MS Access, dBase              | MySQL, Oracle, SQL Server |
 
-
 ## DB
 
 - collezione di dati per ottenre info
@@ -266,17 +263,21 @@ TRUNCATE TABLE Studenti;
   - gestione di dati che contengono i dati
 
 - Insieme organizzato dei dati organizzati e formattati in modo che uno ha più utenti il posso accedere in modo concordato (relazioni)con dati di tipo in base all'opzione corretto e il tipo
+
   - consultazione dei dati in tempo reale
     - blocchi
 
-- Poca gestione file system -> privo -> aggiungi tu i dati -> mettere qualsiasi cosa 
+- Poca gestione file system -> privo -> aggiungi tu i dati -> mettere qualsiasi cosa
 
+## Database non relazionali
 
-## Database non relazionali 
+- puoi mettwere dati di qualsiasi tipo
 
-- puoi mettwere dati di qualsiasi tipo 
+## Database relazionali
 
+- puoi mettwere dati solo del tipo dicharato
 
-## Database relazionali 
+## DBMS
 
-- puoi mettwere dati solo del tipo dicharato 
+- grande quantità di dati e persistenti
+  - riservatezza ed affidabilità dei dati
