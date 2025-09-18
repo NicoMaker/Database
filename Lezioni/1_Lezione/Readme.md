@@ -13,6 +13,7 @@
 
 - Tabelle collegate tra di loro
 - Tabelle è sottoinsieme del prodotto cartesiano di due domini
+- chiamati anche attributi (campi)
 
 ## Sistema Informativo (informatico)
 
@@ -616,3 +617,5 @@ Se volessimo rappresentare tutto **senza altre tabelle**, possiamo solo avere **
 - Ogni studente può iscriversi a più corsi.
 - Ogni corso può avere più studenti iscritti.
 - Le informazioni sono normalizzate: non ripetiamo dati inutilmente, ma li colleghiamo tramite ID.
+
+
