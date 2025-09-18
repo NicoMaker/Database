@@ -275,3 +275,8 @@ TRUNCATE TABLE Studenti;
 ## Database non relazionali 
 
 - puoi mettwere dati di qualsiasi tipo 
+
+
+## Database relazionali 
+
+- puoi mettwere dati solo del tipo dicharato 
