@@ -907,7 +907,24 @@ I vincoli tra chiavi definiscono le relazioni tra le tabelle e garantiscono l’
 
 > Tabella `UtentiSpeciali`: `ID` è chiave primaria e allo stesso tempo chiave esterna verso `Utenti.ID`.
 
+## Cardinalità
 
+La **cardinalità** descrive il numero di elementi presenti in un insieme o la quantità di relazioni possibili tra entità in un database. In particolare, nei database relazionali, indica **quante istanze di una tabella possono essere associate a istanze di un'altra tabella**.
+
+### Tipi di cardinalità nelle relazioni:
+
+1. **Uno a uno (1:1)**
+   Ogni record di una tabella può essere associato a **al massimo un record** di un’altra tabella, e viceversa.
+   _Esempio:_ un dipendente ha una sola tessera aziendale.
+
+2. **Uno a molti (1\:N)**
+   Un record di una tabella può essere associato a **più record** di un’altra tabella, mentre ogni record della seconda tabella è collegato a **uno solo** della prima.
+   _Esempio:_ un autore può scrivere molti libri, ma ogni libro ha un solo autore principale.
+
+3. **Molti a molti (M\:N)**
+   Più record di una tabella possono essere associati a **più record** di un’altra tabella.
+   _Esempio:_ studenti e corsi: uno studente può seguire molti corsi e ogni corso può avere molti studenti.
+   Di solito questa relazione viene implementata tramite una **tabella di associazione**.
 
 ## NULL
 
