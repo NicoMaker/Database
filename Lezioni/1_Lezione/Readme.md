@@ -300,6 +300,7 @@ TRUNCATE TABLE Studenti;
     - unico db grande
       - crea dati all'utente per quello che serve
         - gestione dati grandi
+          - relazioni o tabelle
 
 ### Funzioni
 
@@ -312,3 +313,6 @@ TRUNCATE TABLE Studenti;
 
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
 - Controllo affidabilità -> uso log
+
+
+## 
