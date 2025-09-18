@@ -47,3 +47,200 @@
         - velocità e non riscrivi dati
         - approcio strutturato con SW -> DBMS (database manage system)
   - Fare backup periodico
+
+
+## Database Management System (DBMS)
+
+### 📖 Definizione
+
+Un **Database Management System (DBMS)** è un software che permette di **creare, gestire, organizzare e interrogare** un **database**, garantendo **sicurezza, integrità ed efficienza** nell’accesso ai dati.
+Funziona come un intermediario tra **utente/applicazione** e **database**.
+
+Creazione strumenti di gestione dati -> DDL
+
+
+## 🎯 Funzioni principali
+
+* **DDL (Data Definition Language):** definizione di tabelle, viste, indici (`CREATE`, `ALTER`, `DROP`).
+* **DML (Data Manipulation Language):** inserimento, modifica, eliminazione e lettura dei dati (`INSERT`, `UPDATE`, `DELETE`, `SELECT`).
+* **DCL (Data Control Language):** gestione degli accessi e permessi (`GRANT`, `REVOKE`).
+* **TCL (Transaction Control Language):** gestione delle transazioni con proprietà **ACID** (`COMMIT`, `ROLLBACK`, `SAVEPOINT`).
+
+
+## 🛠 Componenti
+
+* **Motore di archiviazione** (storage engine)
+* **Query processor** (interpreta e ottimizza query)
+* **Gestore delle transazioni**
+* **Gestore della sicurezza**
+* **Catalogo/Dictionary dei metadati**
+
+
+## 🔑 Vantaggi
+
+* ✅ Riduzione ridondanza dei dati
+* ✅ Integrità e consistenza
+* ✅ Sicurezza e controllo accessi
+* ✅ Backup e recovery
+* ✅ Accesso concorrente da più utenti
+* ✅ Indipendenza tra dati e applicazioni
+
+
+## ⚠️ Svantaggi
+
+* ❌ Costo elevato
+* ❌ Complessità di gestione
+* ❌ Richiede risorse hardware/software
+* ❌ Potenziali vulnerabilità se non configurato bene
+
+
+## 🏷 Tipi di DBMS
+
+1. **Gerarchico** – struttura ad albero
+2. **Reticolare** – relazioni a grafo
+3. **Relazionale (RDBMS)** – tabelle e chiavi (es. MySQL, PostgreSQL)
+4. **A oggetti** – integra concetti OOP
+5. **NoSQL** – non relazionali, usati nei Big Data (es. MongoDB)
+6. **Distribuiti** – su più server (es. Google Spanner)
+
+## 📌 Esempi di DBMS
+
+* **Relazionali:** MySQL, PostgreSQL, Oracle DB, SQL Server
+* **NoSQL:** MongoDB, Cassandra, CouchDB, Neo4j
+* **Embedded:** SQLite
+
+
+
+## 🏛 Architettura a 3 livelli
+
+1. **Interno (fisico):** come i dati sono salvati sul disco
+2. **Concettuale (logico):** struttura logica (tabelle, relazioni)
+3. **Esterno (vista utente):** rappresentazione personalizzata dei dati
+
+
+
+
+## DDL (Data Definition Language)
+
+### 📖 Definizione
+
+Il **Data Definition Language (DDL)** è una componente del linguaggio SQL che serve a **definire e gestire la struttura** di un database.
+Con DDL si creano, modificano ed eliminano gli oggetti del database (tabelle, indici, viste, schemi, utenti, ecc.).
+
+DDL -> dati e strumenti di gestione 
+
+
+## 🎯 Funzioni principali del DDL
+
+1. **Creare oggetti** del database (tabelle, indici, viste, schemi).
+2. **Modificare oggetti** già esistenti (aggiungere colonne, cambiare vincoli, rinominare).
+3. **Eliminare oggetti** quando non sono più necessari.
+4. **Definire vincoli di integrità** (primary key, foreign key, unique, check, not null).
+
+
+## 🔑 Comandi principali del DDL
+
+### 1. `CREATE`
+
+Usato per **creare** nuovi oggetti nel database.
+
+* **Tabella:**
+
+```sql
+CREATE TABLE Studenti (
+    ID INT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    Cognome VARCHAR(50) NOT NULL,
+    Eta INT CHECK (Eta >= 18)
+);
+```
+
+* **Indice:**
+
+```sql
+CREATE INDEX idx_nome ON Studenti(Nome);
+```
+
+* **Vista:**
+
+```sql
+CREATE VIEW VistaStudenti AS
+SELECT Nome, Cognome FROM Studenti WHERE Eta >= 18;
+```
+
+### 2. `ALTER`
+
+Usato per **modificare** oggetti esistenti.
+
+* Aggiungere una colonna:
+
+```sql
+ALTER TABLE Studenti ADD Email VARCHAR(100);
+```
+
+* Modificare il tipo di dato:
+
+```sql
+ALTER TABLE Studenti ALTER COLUMN Eta SMALLINT;
+```
+
+* Eliminare una colonna:
+
+```sql
+ALTER TABLE Studenti DROP COLUMN Email;
+```
+
+### 3. `DROP`
+
+Usato per **eliminare** oggetti dal database.
+
+* Eliminare tabella:
+
+```sql
+DROP TABLE Studenti;
+```
+
+* Eliminare vista:
+
+```sql
+DROP VIEW VistaStudenti;
+```
+
+* Eliminare indice:
+
+```sql
+DROP INDEX idx_nome;
+```
+
+
+### 4. `TRUNCATE`
+
+Usato per **svuotare** una tabella eliminando tutti i record, ma mantenendo la struttura.
+
+```sql
+TRUNCATE TABLE Studenti;
+```
+
+
+## 🛠 Vincoli gestiti dal DDL
+
+* **PRIMARY KEY:** identifica univocamente ogni record.
+* **FOREIGN KEY:** mantiene integrità referenziale tra tabelle.
+* **UNIQUE:** assicura valori unici nella colonna.
+* **NOT NULL:** impedisce valori nulli.
+* **CHECK:** applica condizioni logiche sui valori.
+
+
+## 🏷 Caratteristiche del DDL
+
+* Le modifiche sono **automaticamente salvate** (auto-commit).
+* Gestisce la **struttura**, non i dati (quello è compito del DML).
+* È strettamente legato alla definizione dei **metadati** nel catalogo del DBMS.
+
+
+## DB 
+
+- collezione di dati per ottenre info 
+  - gestione di dati che contengono i dati 
+
+- Insieme organizzato dei dati organizzati e formattati in modo che uno ha più utenti il posso accedere in modo concordato
