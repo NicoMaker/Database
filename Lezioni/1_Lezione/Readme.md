@@ -322,13 +322,6 @@ TRUNCATE TABLE Studenti;
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
 - Controllo affidabilità -> uso log
 
-#### Forme Normale
-
-- regole in sequenza che tolgono problemi nel db
-- regole per aggiornare i proprio dati e miglorare il db
-  - lo devi fare in automatico
-- modellare eventuali vincoli e integrità dei dati e restrizione dati (numeri)
-
 ### Articolazione
 
 #### livelli di astrazione
@@ -360,6 +353,13 @@ TRUNCATE TABLE Studenti;
 - in base a db che voglio usare
   - R>elazionale
   - Non relazionale
+
+##### Forme Normale
+
+- regole in sequenza che tolgono problemi nel db
+- regole per aggiornare i proprio dati e miglorare il db
+  - lo devi fare in automatico
+- modellare eventuali vincoli e integrità dei dati e restrizione dati (numeri)
 
 ##### 1. Creazione tabella a struttura fissa
 
