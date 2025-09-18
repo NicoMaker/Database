@@ -322,18 +322,139 @@ TRUNCATE TABLE Studenti;
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
 - Controllo affidabilità -> uso log
 
+### Articolazione
 
-### Articolazione 
-
-#### livelli di astrazione 
+#### livelli di astrazione
 
 - descrive come estracco i dati quello che mi serve da dove ci sono tutti i dati (schema esterno)
+
   - query
-  - dati che riesco a estrarre e vedere i dati 
+  - dati che riesco a estrarre e vedere i dati
 
   - logica (dati completi)
 
-  - astrazione -> dati come sono salvati nel hd 
+  - astrazione -> dati come sono salvati nel hd
 
-#### Modello Logico 
+#### Modello Logico
 
+- tabelle a struttura fissa per tenere i dati (modello relazionale)
+  - campi tabelle lunghezza fissa
+  
+##### 1. Creazione tabella a struttura fissa
+
+```sql
+CREATE TABLE Impiegati (
+    ID INT,            -- intero a lunghezza fissa
+    Nome CHAR(20),     -- stringa di 20 caratteri fissi
+    Cognome CHAR(20),  -- stringa di 20 caratteri fissi
+    Stipendio INT,     -- intero a lunghezza fissa
+    Reparto CHAR(15)   -- stringa di 15 caratteri fissi
+);
+```
+
+
+##### 2. Inserimento dati iniziali
+
+```sql
+INSERT INTO Impiegati (ID, Nome, Cognome, Stipendio, Reparto)
+VALUES
+(1, 'Mario', 'Rossi', 2000, 'Amministrazione'),
+(2, 'Lucia', 'Bianchi', 2500, 'Vendite'),
+(3, 'Marco', 'Verdi', 2200, 'IT'),
+(4, 'Anna', 'Neri', 2100, 'Marketing'),
+(5, 'Giulia', 'Esposito', 2300, 'Finanza');
+```
+
+
+##### 3. Tabella fisica con valori già inseriti
+
+| ID | Nome   | Cognome  | Stipendio | Reparto         |
+| -- | ------ | -------- | --------- | --------------- |
+| 1  | Mario  | Rossi    | 2000      | Amministrazione |
+| 2  | Lucia  | Bianchi  | 2500      | Vendite         |
+| 3  | Marco  | Verdi    | 2200      | IT              |
+| 4  | Anna   | Neri     | 2100      | Marketing       |
+| 5  | Giulia | Esposito | 2300      | Finanza         |
+
+> Nota: ogni campo `CHAR` occupa **tutta la lunghezza dichiarata**, quindi `"Mario"` è memorizzato come `"Mario               "` (20 caratteri, con spazi extra).
+
+
+##### 4. Aggiungere una colonna
+
+```sql
+ALTER TABLE Impiegati
+ADD DataAssunzione DATE;
+```
+
+Aggiornare i dati della nuova colonna:
+
+```sql
+UPDATE Impiegati
+SET DataAssunzione = '2023-01-15'
+WHERE ID = 1;
+
+UPDATE Impiegati
+SET DataAssunzione = '2022-05-20'
+WHERE ID = 2;
+
+UPDATE Impiegati
+SET DataAssunzione = '2021-08-10'
+WHERE ID = 3;
+
+UPDATE Impiegati
+SET DataAssunzione = '2023-03-01'
+WHERE ID = 4;
+
+UPDATE Impiegati
+SET DataAssunzione = '2022-11-05'
+WHERE ID = 5;
+```
+
+
+##### 5. Modificare colonne esistenti
+
+Cambiare lunghezza del campo `Nome` da 20 a 30:
+
+```sql
+ALTER TABLE Impiegati
+MODIFY Nome CHAR(30);
+```
+
+Cambiare tipo di dato `Stipendio` in decimale:
+
+```sql
+ALTER TABLE Impiegati
+MODIFY Stipendio DECIMAL(8,2);
+```
+
+
+##### 6. Aggiornare dati già inseriti
+
+Cambiare stipendio di Marco:
+
+```sql
+UPDATE Impiegati
+SET Stipendio = 2300
+WHERE Nome = 'Marco';
+```
+
+Cambiare reparto di Lucia:
+
+```sql
+UPDATE Impiegati
+SET Reparto = 'Marketing'
+WHERE Nome = 'Lucia';
+```
+
+
+##### 7. Tabella fisica finale (con dati aggiornati)
+
+| ID | Nome   | Cognome  | Stipendio | Reparto         | DataAssunzione |
+| -- | ------ | -------- | --------- | --------------- | -------------- |
+| 1  | Mario  | Rossi    | 2000.00   | Amministrazione | 2023-01-15     |
+| 2  | Lucia  | Bianchi  | 2500.00   | Marketing       | 2022-05-20     |
+| 3  | Marco  | Verdi    | 2300.00   | IT              | 2021-08-10     |
+| 4  | Anna   | Neri     | 2100.00   | Marketing       | 2023-03-01     |
+| 5  | Giulia | Esposito | 2300.00   | Finanza         | 2022-11-05     |
+
+> Qui ogni campo `CHAR` occupa **tutta la lunghezza dichiarata**, quindi `"Mario"` è memorizzato come `"Mario                         "` (30 caratteri ora).
