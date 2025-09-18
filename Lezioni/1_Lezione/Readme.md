@@ -722,6 +722,23 @@ Esistono diversi tipi di legami principali:
       - integrità
       - tra tabelle diverse
 
+## Superchiavi
+
+- insiemi di attributi che identificano in maniera univoca il record di una tabella
+
+- tra superchiave
+
+  - deido primaria
+
+- chiave
+
+  - non ammette null
+
+- superchiave
+  - si
+
+  - se superchiave -> può diventare indice 
+
 ## NULL
 
 - valore attributo
