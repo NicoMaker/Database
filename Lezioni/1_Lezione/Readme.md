@@ -524,6 +524,7 @@ Se volessimo rappresentare tutto **senza altre tabelle**, possiamo solo avere **
   - istanze
     - schema fisso
       - con istanze corrette
+  - omogenei
 
 ##### Modello Relazionale (concetti base)
 
