@@ -325,6 +325,9 @@ TRUNCATE TABLE Studenti;
 #### Forme Normale
 
 - regole in sequenza che tolgono problemi nel db
+- regole per aggiornare i proprio dati e miglorare il db
+  - lo devi fare in automatico
+- modellare eventuali vincoli e integrità dei dati e restrizione dati (numeri)
 
 ### Articolazione
 
