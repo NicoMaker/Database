@@ -280,6 +280,11 @@ TRUNCATE TABLE Studenti;
 ## DBMS
 
 - grande quantità di dati e persistenti
-  - riservatezza ed affidabilità dei dati 
-    - con vincoli d'identità 
+
+  - riservatezza ed affidabilità dei dati
+    - con vincoli d'identità
+
+- vincoli di integrità
+  - posso eliminare solo in determinati casi
+    - se cancelli dati del primitivo elimini anche principlae e se no prima cancelli vincoli e poi quello principale 
 
