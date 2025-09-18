@@ -481,6 +481,7 @@ WHERE Nome = 'Lucia';
 
    - È come un foglio di calcolo, con **righe** e **colonne**.
    - Ogni tabella rappresenta un insieme di entità dello stesso tipo (ad esempio “Utenti” o “Prodotti”).
+   - funzione con molte tabelle utilizzo con delle chiavi
 
 2. **Riga (o tupla)**
 
@@ -619,4 +620,23 @@ Se volessimo rappresentare tutto **senza altre tabelle**, possiamo solo avere **
 - Ogni corso può avere più studenti iscritti.
 - Le informazioni sono normalizzate: non ripetiamo dati inutilmente, ma li colleghiamo tramite ID.
 
+## Chiavi
 
+### Primaria
+
+- Modulo principale che gestisce i dati della tabella.
+- Compiti principali:
+
+  - **Raccogliere i dati**: centralizza le informazioni provenienti da diverse fonti.
+  - **Identificare ogni dato**: assegna un identificatore unico (ID) per distinguere ogni elemento.
+  - **Organizzare i dati**: prepara la struttura in modo che la tabella possa essere popolata correttamente.
+  - **Fornire accesso controllato**: permette la lettura, l’inserimento o la modifica dei dati in maniera coerente.
+
+### Esterne
+
+- Moduli o fonti di dati esterni al modulo principale.
+- Compiti principali:
+
+  - **Fornire dati aggiuntivi**: possono essere API, file JSON, database esterni, ecc.
+  - **Essere integrabili facilmente**: devono poter essere richiamati e uniti ai dati della primaria senza conflitti.
+  - **Mantenere la separazione delle responsabilità**: non gestiscono direttamente la tabella, ma forniscono solo informazioni da elaborare.
