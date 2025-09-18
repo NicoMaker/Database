@@ -703,3 +703,8 @@ Esistono diversi tipi di legami principali:
    - Ogni record di una tabella può essere collegato a **più record** dell’altra tabella e viceversa.
    - Esempio: gli studenti possono iscriversi **a più corsi**, e ogni corso può avere **più studenti**.
    - Per gestire questo legame serve una **tabella di collegamento** (junction table), che registra ogni abbinamento tra record delle due tabelle.
+
+## Modelli Relazionali
+
+- chiavi e legami
+  - attraverso valori
