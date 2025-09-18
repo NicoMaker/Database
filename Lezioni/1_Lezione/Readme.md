@@ -907,6 +907,8 @@ I vincoli tra chiavi definiscono le relazioni tra le tabelle e garantiscono l’
 
 > Tabella `UtentiSpeciali`: `ID` è chiave primaria e allo stesso tempo chiave esterna verso `Utenti.ID`.
 
+
+
 ## NULL
 
 - valore attributo
