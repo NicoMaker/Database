@@ -290,18 +290,25 @@ TRUNCATE TABLE Studenti;
     - se cancelli dati del primitivo elimini anche principlae e se no prima cancelli vincoli e poi quello principale
 
 - Dati che prendo dati .> da un alra opzione a un altra tabella
+
   - utwnti comunicano con DBMS -> con area di sorage permanente
     - gestisce info in modo tabellare
       - cominicano con il file system
+
+- Gestisione scalbailità informazioni
+  - Cluster
+    - unico db grande
+      - crea dati all'utente per quello che serve
+        - gestione dati grandi
 
 ### Funzioni
 
 #### Gestire una transazione
 
-- se comincia deve funzionare corretamente sia prima che dopo la transazioe 
-- deve funzioanre tutto 
+- se comincia deve funzionare corretamente sia prima che dopo la transazioe
+- deve funzioanre tutto
 
-#### Capacità di recupero 
+#### Capacità di recupero
 
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
 - Controllo affidabilità -> uso log
