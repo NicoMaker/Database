@@ -288,3 +288,4 @@ TRUNCATE TABLE Studenti;
   - posso eliminare solo in determinati casi
     - se cancelli dati del primitivo elimini anche principlae e se no prima cancelli vincoli e poi quello principale 
 
+- Dati che prendo dati .> da un alra opzione a un altra tabella 
