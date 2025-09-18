@@ -641,7 +641,7 @@ Se volessimo rappresentare tutto **senza altre tabelle**, possiamo solo avere **
   - **Essere integrabili facilmente**: devono poter essere richiamati e uniti ai dati della primaria senza conflitti.
   - **Mantenere la separazione delle responsabilità**: non gestiscono direttamente la tabella, ma forniscono solo informazioni da elaborare.
 
-## Relazioni n a n nei database
+## Relazioni n a n
 
 Quando lavoriamo con i database, spesso dobbiamo collegare **due tabelle** in modo che un elemento di una tabella possa essere collegato a **più elementi dell’altra tabella**, e viceversa. Questo tipo di relazione si chiama **n a n**.
 
