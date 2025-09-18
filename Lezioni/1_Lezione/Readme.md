@@ -21,4 +21,19 @@
 
 - Dati con senso -> informazioni 
 
-- Strumenti e dati per gestire le inforazioni in modo rapido ed efficace 
+- Strumenti e dati per gestire le inforazioni in modo rapido ed efficace (orgaaizzatare e grstire dati e fare analisi)
+- Gestire i dati in modo efficace e disponibile e bello
+
+
+## Informazione 
+
+- Insieme di dati che hannio significato -> contene dati
+- Elenco di dati 
+- Informazione -> dopo elaborazione
+
+## Dati 
+
+- elementi del record -> creano informazioni -> dati che esistono dentro 
+- Informazione -> prima elaborazione
+- Dati -> diversi tipi di dato
+
