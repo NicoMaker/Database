@@ -1,4 +1,4 @@
-- [vai al file principale](../Readme.md)
+- [vai al file del giorno](../Readme.md)
 
 ### **Tabelle del database**
 
