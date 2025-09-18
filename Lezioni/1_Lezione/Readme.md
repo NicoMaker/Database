@@ -708,3 +708,10 @@ Esistono diversi tipi di legami principali:
 
 - chiavi e legami
   - attraverso valori
+
+
+## NULL
+
+- valore attributo 
+  - dato non conosciuyo 
+    - separara in tabelle in modo corretto 
