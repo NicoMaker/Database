@@ -640,3 +640,66 @@ Se volessimo rappresentare tutto **senza altre tabelle**, possiamo solo avere **
   - **Fornire dati aggiuntivi**: possono essere API, file JSON, database esterni, ecc.
   - **Essere integrabili facilmente**: devono poter essere richiamati e uniti ai dati della primaria senza conflitti.
   - **Mantenere la separazione delle responsabilità**: non gestiscono direttamente la tabella, ma forniscono solo informazioni da elaborare.
+
+## Relazioni n a n nei database
+
+Quando lavoriamo con i database, spesso dobbiamo collegare **due tabelle** in modo che un elemento di una tabella possa essere collegato a **più elementi dell’altra tabella**, e viceversa. Questo tipo di relazione si chiama **n a n**.
+
+### Pensiamoci con un esempio pratico
+
+Immagina di avere due tabelle:
+
+1. **Studenti**: contiene i dati degli studenti
+2. **Corsi**: contiene i dati dei corsi disponibili
+
+Un singolo studente può iscriversi a **più corsi**, e un singolo corso può avere **più studenti** iscritti.
+
+> Qui non basta usare una colonna “ID corso” nella tabella studenti, perché uno studente potrebbe avere più corsi.
+> Non basta usare una colonna “ID studente” nella tabella corsi, perché un corso potrebbe avere più studenti.
+
+Quindi dobbiamo creare una **terza tabella**, chiamata spesso **tabella di collegamento** (o junction table), per gestire la relazione n a n.
+
+### Struttura della tabella di collegamento
+
+La tabella di collegamento avrà almeno due colonne:
+
+- `StudenteID` → riferimento allo studente
+- `CorsoID` → riferimento al corso
+
+Ogni riga della tabella rappresenta **un’iscrizione** di uno studente a un corso.
+
+**Esempio di dati:**
+
+| StudenteID | CorsoID |
+| ---------- | ------- |
+| 1          | 101     |
+| 1          | 102     |
+| 2          | 101     |
+| 3          | 103     |
+
+> Così possiamo vedere che:
+>
+> - Lo studente 1 è iscritto ai corsi 101 e 102
+> - Il corso 101 ha gli studenti 1 e 2
+
+## Legami
+
+Nei database, quando lavoriamo con più tabelle, **i legami servono a collegare le informazioni tra di loro**. Questi legami permettono di evitare duplicazioni e di organizzare i dati in modo efficiente.
+
+Esistono diversi tipi di legami principali:
+
+1. **Uno a uno (1:1)**
+
+   - Ogni record di una tabella corrisponde a **un solo record** nell’altra tabella.
+   - Esempio: ogni persona ha **un solo passaporto** e ogni passaporto appartiene **a una sola persona**.
+
+2. **Uno a molti (1\:N)**
+
+   - Un record di una tabella può essere collegato a **più record** di un’altra tabella, ma ogni record della seconda tabella è collegato a **un solo record** della prima.
+   - Esempio: un insegnante può avere **più studenti**, ma ogni studente ha **un solo insegnante** principale.
+
+3. **Molti a molti (N\:N)**
+
+   - Ogni record di una tabella può essere collegato a **più record** dell’altra tabella e viceversa.
+   - Esempio: gli studenti possono iscriversi **a più corsi**, e ogni corso può avere **più studenti**.
+   - Per gestire questo legame serve una **tabella di collegamento** (junction table), che registra ogni abbinamento tra record delle due tabelle.
