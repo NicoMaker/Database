@@ -321,3 +321,19 @@ TRUNCATE TABLE Studenti;
 
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
 - Controllo affidabilità -> uso log
+
+
+### Articolazione 
+
+#### livelli di astrazione 
+
+- descrive come estracco i dati quello che mi serve da dove ci sono tutti i dati (schema esterno)
+  - query
+  - dati che riesco a estrarre e vedere i dati 
+
+  - logica (dati completi)
+
+  - astrazione -> dati come sono salvati nel hd 
+
+#### Modello Logico 
+
