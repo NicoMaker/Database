@@ -269,6 +269,8 @@ TRUNCATE TABLE Studenti;
   - consultazione dei dati in tempo reale
     - blocchi
 
+- Poca gestione file system -> privo -> aggiungi tu i dati -> mettere qualsiasi cosa 
+
 
 ## Database non relazionali 
 
