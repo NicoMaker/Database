@@ -296,17 +296,19 @@ TRUNCATE TABLE Studenti;
       - cominicano con il file system
 
 - Gestisione scalbailità informazioni
+
   - Cluster
     - unico db grande
       - crea dati all'utente per quello che serve
         - gestione dati grandi
           - relazioni o tabelle
 
-- Struttura Software 
-  - vedo i dati in modo astratto 
-    - dati che voglio rappresentare 
+- Struttura Software
 
-- traduce dati e li gestisce nel dato in modo corretto -> trovi dati all'interno del file 
+  - vedo i dati in modo astratto
+    - dati che voglio rappresentare
+
+- traduce dati e li gestisce nel dato in modo corretto -> trovi dati all'interno del file
 
 ### Funzioni
 
@@ -320,5 +322,4 @@ TRUNCATE TABLE Studenti;
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
 - Controllo affidabilità -> uso log
 
-
-## 
+##
