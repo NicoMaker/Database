@@ -12,5 +12,10 @@
 ## Relazione 
 
 - Tabelle collegate tra di loro 
-- Tabelle è sottoinsieme del prodotto cartesiano di domini
+- Tabelle è sottoinsieme del prodotto cartesiano di due domini
+
+## Sistema Informativo
+
+- organizzazione di info che vedo quando leggo i dati -> in base a cosa cerco mi da info
+- Disponizione degli strumenti che agiscono sui nostri dati
 
