@@ -735,19 +735,21 @@ Esistono diversi tipi di legami principali:
   - non ammette null
 
 - superchiave
+
   - si
 
-  - se superchiave -> può diventare indice 
+  - se superchiave -> può diventare indice
 
   - per ogni relazione esiste una superchiave (si)
 
-  - sicuramente nel db -< una chiave primaria -> evita duplicati 
+  - sicuramente nel db -< una chiave primaria -> evita duplicati
 
-
-## Chiavi 
+## Chiavi
 
 - identificare record
-- coorelare tra di loro tabelle 
+- coorelare tra di loro tabelle
+
+- Chiave -> null -> non identificato variabile null -> faccio ipotesi che non ammette valori null
 
 ## NULL
 
