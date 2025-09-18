@@ -280,4 +280,6 @@ TRUNCATE TABLE Studenti;
 ## DBMS
 
 - grande quantità di dati e persistenti
-  - riservatezza ed affidabilità dei dati
+  - riservatezza ed affidabilità dei dati 
+    - con vincoli d'identità 
+
