@@ -68,4 +68,4 @@
 
 ## Diagrama ER
 
-![Diagrama ER](1_Esercizio.png)
+![Diagrama ER](1_esercizio.png)
