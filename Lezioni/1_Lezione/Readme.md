@@ -473,3 +473,146 @@ WHERE Nome = 'Lucia';
 | 5   | Giulia | Esposito | 2300.00   | Finanza         | 2022-11-05     |
 
 > Qui ogni campo `CHAR` occupa **tutta la lunghezza dichiarata**, quindi `"Mario"` è memorizzato come `"Mario                         "` (30 caratteri ora).
+
+##### Modello Relazionale
+
+1. **Tabella (o relazione)**
+
+   - È come un foglio di calcolo, con **righe** e **colonne**.
+   - Ogni tabella rappresenta un insieme di entità dello stesso tipo (ad esempio “Utenti” o “Prodotti”).
+
+2. **Riga (o tupla)**
+
+   - È un singolo record della tabella, cioè un’istanza di entità.
+   - Esempio: un utente specifico con nome, cognome, email ed età.
+
+3. **Colonna (o attributo)**
+
+   - È una caratteristica dell’entità.
+   - Esempio: “Nome”, “Cognome”, “Età”.
+
+4. **Chiave primaria**
+
+   - È un attributo (o combinazione di attributi) che identifica in modo univoco ogni riga della tabella.
+   - Esempio: l’ID di un utente.
+
+5. **Dati (o istanze)**
+
+   - Sono i valori concreti che inseriamo nelle righe della tabella.
+   - Esempio: Luca, Rossi, 25, [luca@email.com](mailto:luca@email.com).
+
+Se volessimo rappresentare tutto **senza altre tabelle**, possiamo solo avere **una tabella autonoma** con dati direttamente dentro:
+
+**Esempio concettuale:**
+
+| ID  | Nome   | Cognome | Età |
+| --- | ------ | ------- | --- |
+| 1   | Luca   | Rossi   | 25  |
+| 2   | Maria  | Bianchi | 30  |
+| 3   | Giulia | Verdi   | 28  |
+
+- Ogni riga è un’istanza.
+- Ogni colonna è un attributo.
+- ID è la chiave primaria.
+
+- dati a struttura variabile e dati messi in ordine corretto
+
+  - ordine irrelevante
+
+- dati costruiti in base all'opzione corretta e il tipo e in modo corretto dei dati in modo coinciso e corretto
+  - istanze
+    - schema fisso
+      - con istanze corrette
+
+##### Modello Relazionale (concetti base)
+
+1. Tabella (o relazione)
+
+   - È come un foglio di calcolo, con righe e colonne.
+   - Ogni tabella rappresenta un insieme di entità dello stesso tipo (ad esempio “Utenti” o “Prodotti”).
+
+2. Riga (o tupla)
+
+   - È un singolo record della tabella, cioè un’istanza di entità.
+   - Esempio: un utente specifico con nome, cognome, email ed età.
+
+3. Colonna (o attributo)
+
+   - È una caratteristica dell’entità.
+   - Esempio: “Nome”, “Cognome”, “Età”.
+
+4. Chiave primaria
+
+   - È un attributo (o combinazione di attributi) che identifica in modo univoco ogni riga della tabella.
+   - Esempio: l’ID di un utente.
+
+5. Dati (o istanze)
+   - Sono i valori concreti che inseriamo nelle righe della tabella.
+   - Esempio: Luca, Rossi, 25, luca@email.com.
+
+##### Esempio concettuale di una tabella autonoma
+
+| ID  | Nome   | Cognome | Età |
+| --- | ------ | ------- | --- |
+| 1   | Luca   | Rossi   | 25  |
+| 2   | Maria  | Bianchi | 30  |
+| 3   | Giulia | Verdi   | 28  |
+
+- Ogni riga è un’istanza.
+- Ogni colonna è un attributo.
+- ID è la chiave primaria.
+
+##### Modello relazionale con più tabelle
+
+###### Tabelle principali
+
+**Tabella Studenti**
+| ID_Studente | Nome | Cognome |
+|-------------|--------|---------|
+| 1 | Luca | Rossi |
+| 2 | Maria | Bianchi |
+| 3 | Giulia | Verdi |
+
+**Tabella Corsi**
+| ID_Corso | Nome_Corso | Docente |
+|----------|--------------|---------------|
+| 101 | Matematica | Prof. Neri |
+| 102 | Informatica | Prof. Bianchi |
+| 103 | Storia | Prof. Rossi |
+
+**Tabella Iscrizioni (relazione molti-a-molti)**
+| ID_Studente | ID_Corso |
+|-------------|----------|
+| 1 | 101 |
+| 1 | 102 |
+| 2 | 102 |
+| 3 | 101 |
+| 3 | 103 |
+
+**Tabella Professori**
+| ID_Professore | Nome | Cognome |
+|---------------|-----------|----------|
+| 1 | Carlo | Neri |
+| 2 | Anna | Bianchi |
+| 3 | Marco | Rossi |
+
+**Tabella Esami**
+| ID_Esame | ID_Studente | ID_Corso | Voto |
+|----------|-------------|----------|------|
+| 1 | 1 | 101 | 28 |
+| 2 | 1 | 102 | 30 |
+| 3 | 2 | 102 | 26 |
+| 4 | 3 | 101 | 24 |
+| 5 | 3 | 103 | 29 |
+
+##### Concetti chiave
+
+- Chiave primaria: identifica univocamente una riga nella tabella (es. ID_Studente o ID_Corso).
+- Chiave esterna: collega tabelle diverse (es. ID_Studente in Iscrizioni fa riferimento alla tabella Studenti).
+- Relazione molti-a-molti: una tabella ponte come Iscrizioni permette di associare più studenti a più corsi.
+
+##### Come funziona
+
+- Ogni studente può iscriversi a più corsi.
+- Ogni corso può avere più studenti iscritti.
+- Le informazioni sono normalizzate: non ripetiamo dati inutilmente, ma li colleghiamo tramite ID.
