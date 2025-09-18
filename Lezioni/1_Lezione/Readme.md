@@ -45,7 +45,9 @@
       - Dati predittive con analisi
       - dati in modo persistente
         - velocità e non riscrivi dati
-        - approcio strutturato con SW -> DBMS (database manage system)
+        - approcio strutturato con SW 
+          - DBMS (database manage system)
+          - DBRMS (database manage relational system)
   - Fare backup periodico
 
 
@@ -243,4 +245,6 @@ TRUNCATE TABLE Studenti;
 - collezione di dati per ottenre info 
   - gestione di dati che contengono i dati 
 
-- Insieme organizzato dei dati organizzati e formattati in modo che uno ha più utenti il posso accedere in modo concordato
+- Insieme organizzato dei dati organizzati e formattati in modo che uno ha più utenti il posso accedere in modo concordato (relazioni)con dati di tipo in base all'opzione corretto e il tipo
+  - consultazione dei dati in tempo reale 
+
