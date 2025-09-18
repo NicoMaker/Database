@@ -917,7 +917,7 @@ La **cardinalità** descrive il numero di elementi presenti in un insieme o la q
    Ogni record di una tabella può essere associato a **al massimo un record** di un’altra tabella, e viceversa.
    _Esempio:_ un dipendente ha una sola tessera aziendale.
 
-   - ogni entità è una tabella 
+   - ogni entità è una tabella
    - Ogni attributo campo della tabella
    - chiave primaria tabella legare 2 chiavi primarie
 
@@ -926,7 +926,7 @@ La **cardinalità** descrive il numero di elementi presenti in un insieme o la q
    _Esempio:_ un autore può scrivere molti libri, ma ogni libro ha un solo autore principale.
 
    - chiave primaria 1 e riscvi dall'altra parte -> chiave esterna
-   - ogni entità è una tabella 
+   - ogni entità è una tabella
    - Ogni attributo campo della tabella
 
 3. **Molti a molti (M\:N)**
@@ -934,9 +934,9 @@ La **cardinalità** descrive il numero di elementi presenti in un insieme o la q
    _Esempio:_ studenti e corsi: uno studente può seguire molti corsi e ogni corso può avere molti studenti.
    Di solito questa relazione viene implementata tramite una **tabella di associazione**.
 
-   - ogni entità è una tabella 
+   - ogni entità è una tabella
    - Ogni attributo campo della tabella
-   - tabella di ttransito 
+   - tabella di ttransito
      - chiave primaria tabella di sx e scrive in un campo chiave primaria -> esterna
      - chiave primaria tabella di dx e scrive in un campo chiave primaria -> esterna
 
