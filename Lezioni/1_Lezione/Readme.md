@@ -936,7 +936,9 @@ La **cardinalità** descrive il numero di elementi presenti in un insieme o la q
 
    - ogni entità è una tabella 
    - Ogni attributo campo della tabella
-   - primary key 
+   - tabella di ttransito 
+     - chiave primaria tabella di sx e scrive in un campo chiave primaria
+     - chiave primaria tabella di dx e scrive in un campo chiave primaria
 
 ## NULL
 
