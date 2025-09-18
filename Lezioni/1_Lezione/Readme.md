@@ -304,3 +304,4 @@ TRUNCATE TABLE Studenti;
 #### Capacità di recupero 
 
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
+- Controllo affidabilità -> uso log
