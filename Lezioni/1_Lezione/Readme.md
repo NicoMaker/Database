@@ -14,8 +14,7 @@
 - Tabelle collegate tra di loro 
 - Tabelle è sottoinsieme del prodotto cartesiano di due domini
 
-## Sistema Informativo
+## Sistema Informativo (informatico)
 
 - organizzazione di info che vedo quando leggo i dati -> in base a cosa cerco mi da info
-- Disponizione degli strumenti che agiscono sui nostri dati
-
+- Disponizione degli strumenti che agiscono sui nostri dati -> dati in funzione a cosa serve
