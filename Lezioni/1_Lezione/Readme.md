@@ -18,3 +18,7 @@
 
 - organizzazione di info che vedo quando leggo i dati -> in base a cosa cerco mi da info
 - Disponizione degli strumenti che agiscono sui nostri dati -> dati in funzione a cosa serve
+
+- Dati con senso -> informazioni 
+
+- Strumenti e dati per gestire le inforazioni in modo rapido ed efficace 
