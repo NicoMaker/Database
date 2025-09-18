@@ -925,6 +925,8 @@ La **cardinalità** descrive il numero di elementi presenti in un insieme o la q
    Più record di una tabella possono essere associati a **più record** di un’altra tabella.
    _Esempio:_ studenti e corsi: uno studente può seguire molti corsi e ogni corso può avere molti studenti.
    Di solito questa relazione viene implementata tramite una **tabella di associazione**.
+   ogni entità è una tabella 
+   Ogni attributo campo della tabella
 
 ## NULL
 
