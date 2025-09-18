@@ -707,11 +707,23 @@ Esistono diversi tipi di legami principali:
 ## Modelli Relazionali
 
 - chiavi e legami
+
   - attraverso valori
 
+- istanze nella reòazione
+  - lecite con alcuni vincoli
+    - intrarelazionali
+      - stessa tabella
+    - chiave
+      - non ha senso per la mia logica
+        - ogni tabella con chiave primaria
+    - tra relazioni diverse
+      - cardinalità
+      - integrità
+      - tra tabelle diverse
 
 ## NULL
 
-- valore attributo 
-  - dato non conosciuyo 
-    - separara in tabelle in modo corretto 
+- valore attributo
+  - dato non conosciuyo
+    - separara in tabelle in modo corretto
