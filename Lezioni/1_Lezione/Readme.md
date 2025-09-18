@@ -322,6 +322,10 @@ TRUNCATE TABLE Studenti;
 - riprendere i dati dei guasti senza perdere i dati (mantenendo info non salvare)
 - Controllo affidabilità -> uso log
 
+#### Forme Normale 
+
+- regole in sequenza che tolgono problemi nel db
+
 ### Articolazione
 
 #### livelli di astrazione
@@ -349,6 +353,10 @@ TRUNCATE TABLE Studenti;
   - campi tabelle lunghezza fissa
 
 - Modello per capire che concetto che funzioni il modello concettuale
+
+- in base a db che voglio usare
+  - R>elazionale
+  - Non relazionale
 
 ##### 1. Creazione tabella a struttura fissa
 
@@ -462,5 +470,3 @@ WHERE Nome = 'Lucia';
 | 5   | Giulia | Esposito | 2300.00   | Finanza         | 2022-11-05     |
 
 > Qui ogni campo `CHAR` occupa **tutta la lunghezza dichiarata**, quindi `"Mario"` è memorizzato come `"Mario                         "` (30 caratteri ora).
-
-
