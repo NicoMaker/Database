@@ -45,11 +45,10 @@
       - Dati predittive con analisi
       - dati in modo persistente
         - velocità e non riscrivi dati
-        - approcio strutturato con SW 
+        - approcio strutturato con SW
           - DBMS (database manage system)
-          - DBRMS (database manage relational system)
+          - DBRMS (Relational Database Management System)
   - Fare backup periodico
-
 
 ## Database Management System (DBMS)
 
@@ -60,41 +59,36 @@ Funziona come un intermediario tra **utente/applicazione** e **database**.
 
 Creazione strumenti di gestione dati -> DDL
 
-
 ## 🎯 Funzioni principali
 
-* **DDL (Data Definition Language):** definizione di tabelle, viste, indici (`CREATE`, `ALTER`, `DROP`).
-* **DML (Data Manipulation Language):** inserimento, modifica, eliminazione e lettura dei dati (`INSERT`, `UPDATE`, `DELETE`, `SELECT`).
-* **DCL (Data Control Language):** gestione degli accessi e permessi (`GRANT`, `REVOKE`).
-* **TCL (Transaction Control Language):** gestione delle transazioni con proprietà **ACID** (`COMMIT`, `ROLLBACK`, `SAVEPOINT`).
-
+- **DDL (Data Definition Language):** definizione di tabelle, viste, indici (`CREATE`, `ALTER`, `DROP`).
+- **DML (Data Manipulation Language):** inserimento, modifica, eliminazione e lettura dei dati (`INSERT`, `UPDATE`, `DELETE`, `SELECT`).
+- **DCL (Data Control Language):** gestione degli accessi e permessi (`GRANT`, `REVOKE`).
+- **TCL (Transaction Control Language):** gestione delle transazioni con proprietà **ACID** (`COMMIT`, `ROLLBACK`, `SAVEPOINT`).
 
 ## 🛠 Componenti
 
-* **Motore di archiviazione** (storage engine)
-* **Query processor** (interpreta e ottimizza query)
-* **Gestore delle transazioni**
-* **Gestore della sicurezza**
-* **Catalogo/Dictionary dei metadati**
-
+- **Motore di archiviazione** (storage engine)
+- **Query processor** (interpreta e ottimizza query)
+- **Gestore delle transazioni**
+- **Gestore della sicurezza**
+- **Catalogo/Dictionary dei metadati**
 
 ## 🔑 Vantaggi
 
-* ✅ Riduzione ridondanza dei dati
-* ✅ Integrità e consistenza
-* ✅ Sicurezza e controllo accessi
-* ✅ Backup e recovery
-* ✅ Accesso concorrente da più utenti
-* ✅ Indipendenza tra dati e applicazioni
-
+- ✅ Riduzione ridondanza dei dati
+- ✅ Integrità e consistenza
+- ✅ Sicurezza e controllo accessi
+- ✅ Backup e recovery
+- ✅ Accesso concorrente da più utenti
+- ✅ Indipendenza tra dati e applicazioni
 
 ## ⚠️ Svantaggi
 
-* ❌ Costo elevato
-* ❌ Complessità di gestione
-* ❌ Richiede risorse hardware/software
-* ❌ Potenziali vulnerabilità se non configurato bene
-
+- ❌ Costo elevato
+- ❌ Complessità di gestione
+- ❌ Richiede risorse hardware/software
+- ❌ Potenziali vulnerabilità se non configurato bene
 
 ## 🏷 Tipi di DBMS
 
@@ -107,20 +101,15 @@ Creazione strumenti di gestione dati -> DDL
 
 ## 📌 Esempi di DBMS
 
-* **Relazionali:** MySQL, PostgreSQL, Oracle DB, SQL Server
-* **NoSQL:** MongoDB, Cassandra, CouchDB, Neo4j
-* **Embedded:** SQLite
-
-
+- **Relazionali:** MySQL, PostgreSQL, Oracle DB, SQL Server
+- **NoSQL:** MongoDB, Cassandra, CouchDB, Neo4j
+- **Embedded:** SQLite
 
 ## 🏛 Architettura a 3 livelli
 
 1. **Interno (fisico):** come i dati sono salvati sul disco
 2. **Concettuale (logico):** struttura logica (tabelle, relazioni)
 3. **Esterno (vista utente):** rappresentazione personalizzata dei dati
-
-
-
 
 ## DDL (Data Definition Language)
 
@@ -129,8 +118,7 @@ Creazione strumenti di gestione dati -> DDL
 Il **Data Definition Language (DDL)** è una componente del linguaggio SQL che serve a **definire e gestire la struttura** di un database.
 Con DDL si creano, modificano ed eliminano gli oggetti del database (tabelle, indici, viste, schemi, utenti, ecc.).
 
-DDL -> dati e strumenti di gestione 
-
+DDL -> dati e strumenti di gestione
 
 ## 🎯 Funzioni principali del DDL
 
@@ -139,14 +127,13 @@ DDL -> dati e strumenti di gestione
 3. **Eliminare oggetti** quando non sono più necessari.
 4. **Definire vincoli di integrità** (primary key, foreign key, unique, check, not null).
 
-
 ## 🔑 Comandi principali del DDL
 
 ### 1. `CREATE`
 
 Usato per **creare** nuovi oggetti nel database.
 
-* **Tabella:**
+- **Tabella:**
 
 ```sql
 CREATE TABLE Studenti (
@@ -157,13 +144,13 @@ CREATE TABLE Studenti (
 );
 ```
 
-* **Indice:**
+- **Indice:**
 
 ```sql
 CREATE INDEX idx_nome ON Studenti(Nome);
 ```
 
-* **Vista:**
+- **Vista:**
 
 ```sql
 CREATE VIEW VistaStudenti AS
@@ -174,19 +161,19 @@ SELECT Nome, Cognome FROM Studenti WHERE Eta >= 18;
 
 Usato per **modificare** oggetti esistenti.
 
-* Aggiungere una colonna:
+- Aggiungere una colonna:
 
 ```sql
 ALTER TABLE Studenti ADD Email VARCHAR(100);
 ```
 
-* Modificare il tipo di dato:
+- Modificare il tipo di dato:
 
 ```sql
 ALTER TABLE Studenti ALTER COLUMN Eta SMALLINT;
 ```
 
-* Eliminare una colonna:
+- Eliminare una colonna:
 
 ```sql
 ALTER TABLE Studenti DROP COLUMN Email;
@@ -196,24 +183,23 @@ ALTER TABLE Studenti DROP COLUMN Email;
 
 Usato per **eliminare** oggetti dal database.
 
-* Eliminare tabella:
+- Eliminare tabella:
 
 ```sql
 DROP TABLE Studenti;
 ```
 
-* Eliminare vista:
+- Eliminare vista:
 
 ```sql
 DROP VIEW VistaStudenti;
 ```
 
-* Eliminare indice:
+- Eliminare indice:
 
 ```sql
 DROP INDEX idx_nome;
 ```
-
 
 ### 4. `TRUNCATE`
 
@@ -223,28 +209,67 @@ Usato per **svuotare** una tabella eliminando tutti i record, ma mantenendo la s
 TRUNCATE TABLE Studenti;
 ```
 
-
 ## 🛠 Vincoli gestiti dal DDL
 
-* **PRIMARY KEY:** identifica univocamente ogni record.
-* **FOREIGN KEY:** mantiene integrità referenziale tra tabelle.
-* **UNIQUE:** assicura valori unici nella colonna.
-* **NOT NULL:** impedisce valori nulli.
-* **CHECK:** applica condizioni logiche sui valori.
-
+- **PRIMARY KEY:** identifica univocamente ogni record.
+- **FOREIGN KEY:** mantiene integrità referenziale tra tabelle.
+- **UNIQUE:** assicura valori unici nella colonna.
+- **NOT NULL:** impedisce valori nulli.
+- **CHECK:** applica condizioni logiche sui valori.
 
 ## 🏷 Caratteristiche del DDL
 
-* Le modifiche sono **automaticamente salvate** (auto-commit).
-* Gestisce la **struttura**, non i dati (quello è compito del DML).
-* È strettamente legato alla definizione dei **metadati** nel catalogo del DBMS.
+- Le modifiche sono **automaticamente salvate** (auto-commit).
+- Gestisce la **struttura**, non i dati (quello è compito del DML).
+- È strettamente legato alla definizione dei **metadati** nel catalogo del DBMS.
 
 
-## DB 
+## Differenza tra DBMS e RDBMS
 
-- collezione di dati per ottenre info 
-  - gestione di dati che contengono i dati 
+### DBMS (Database Management System)
+
+* È un software che permette di **creare, gestire e manipolare** un database.
+* I dati possono essere organizzati in **file, record, gerarchie o tabelle semplici**.
+* Non sempre gestisce le **relazioni** tra i dati.
+* Offre funzionalità base di archiviazione, ricerca e modifica.
+
+**Esempi:** Microsoft Access, dBase.
+
+### RDBMS (Relational Database Management System)
+
+* È un **tipo di DBMS** basato sul **modello relazionale**.
+* I dati sono organizzati in **tabelle (relazioni)** con righe (tuple) e colonne (attributi).
+* Supporta **chiavi primarie, chiavi esterne e vincoli di integrità**.
+* Gestisce le proprietà **ACID** (Atomicità, Consistenza, Isolamento, Durabilità).
+* Permette query avanzate con **SQL** e relazioni tra più tabelle.
+
+**Esempi:** MySQL, PostgreSQL, Oracle DB, SQL Server.
+
+
+## Tabella comparativa
+
+| Caratteristica          | DBMS                          | RDBMS                     |
+| ----------------------- | ----------------------------- | ------------------------- |
+| **Modello dati**        | File, gerarchico o reticolare | Relazionale (tabelle)     |
+| **Relazioni tra dati**  | Non sempre supportate         | Supportate (PK, FK)       |
+| **Integrità dei dati**  | Limitata                      | Garantita da vincoli      |
+| **Transazioni (ACID)**  | Non sempre garantite          | Sempre garantite          |
+| **Normalizzazione**     | Non applicata                 | Applicata                 |
+| **Accesso multiutente** | Limitato                      | Avanzato                  |
+| **Esempi**              | MS Access, dBase              | MySQL, Oracle, SQL Server |
+
+
+## DB
+
+- collezione di dati per ottenre info
+
+  - gestione di dati che contengono i dati
 
 - Insieme organizzato dei dati organizzati e formattati in modo che uno ha più utenti il posso accedere in modo concordato (relazioni)con dati di tipo in base all'opzione corretto e il tipo
-  - consultazione dei dati in tempo reale 
+  - consultazione dei dati in tempo reale
+    - blocchi
 
+
+## Database non relazionali 
+
+- puoi mettwere dati di qualsiasi tipo 
