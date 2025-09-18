@@ -335,11 +335,21 @@ TRUNCATE TABLE Studenti;
 
   - astrazione -> dati come sono salvati nel hd
 
+
+#### Modello Concettuale
+
+- descrive come estratto i dati quello che mi serve da dove ci sono tutti i dati (schema esterno)
+- descrizione dato come funziona il metodo 
+  - schema sturttura 
+    - trasformi in logica poi quando è tutto ok 
+
 #### Modello Logico
 
 - tabelle a struttura fissa per tenere i dati (modello relazionale)
   - campi tabelle lunghezza fissa
-  
+
+- Modello per capire che concetto che funzioni il modello concettuale 
+
 ##### 1. Creazione tabella a struttura fissa
 
 ```sql
