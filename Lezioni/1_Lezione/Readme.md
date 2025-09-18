@@ -302,6 +302,12 @@ TRUNCATE TABLE Studenti;
         - gestione dati grandi
           - relazioni o tabelle
 
+- Struttura Software 
+  - vedo i dati in modo astratto 
+    - dati che voglio rappresentare 
+
+- traduce dati e li gestisce nel dato in modo corretto -> trovi dati all'interno del file 
+
 ### Funzioni
 
 #### Gestire una transazione
