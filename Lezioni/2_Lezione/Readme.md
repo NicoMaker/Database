@@ -31,6 +31,7 @@ cancelli i dati collegati a lui
 - Ogni riga deve rappresentare un’entità distinta.
 
 - ogni tabella deve avere la sua chiave primaria
+- dati non ripetututi
 
 **Esempio non 1NF:**
 
@@ -51,6 +52,8 @@ Perfetto 👍 allora te lo riscrivo partendo da `###`, così manteniamo la stess
 
 - Deve essere già in **1NF**.
 - Nessuna colonna non chiave deve dipendere solo da **parte** della chiave primaria (utile quando la chiave è composta).
+
+- come colonne non chaive tabella -> legate alla chiave primaria
 
 #### 🔴 Esempio non 2NF
 
