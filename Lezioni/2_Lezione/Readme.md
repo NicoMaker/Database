@@ -136,6 +136,8 @@ Se `Facoltà` dipende da `Matricola`, allora non è 3NF.
 - Deve essere in BCNF.
 - Elimina le **dipendenze multivalore** (quando un’entità è legata a più insiemi indipendenti di valori).
 
+- dipendenze sulla chiave e non stile 
+
 **Esempio non 4NF:**
 
 | Studente | Lingua   | Sport  |
