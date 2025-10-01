@@ -7,3 +7,7 @@
 - ottimizzato
 - semplice
 - efficente e sicuro
+
+## con chiavi vinvoli di integrita
+
+cancelli i dati collegati a lui
