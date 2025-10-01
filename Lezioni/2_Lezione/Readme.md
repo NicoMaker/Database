@@ -45,22 +45,53 @@ cancelli i dati collegati a lui
 | Luca     | 333123   |
 | Luca     | 340555   |
 
+Perfetto 👍 allora te lo riscrivo partendo da `###`, così manteniamo la stessa struttura uniforme delle altre forme normali.
+
 ### 2. Seconda Forma Normale (2NF)
 
-- Deve essere già in 1NF.
+- Deve essere già in **1NF**.
 - Nessuna colonna non chiave deve dipendere solo da **parte** della chiave primaria (utile quando la chiave è composta).
 
-**Esempio non 2NF:**
+#### 🔴 Esempio non 2NF
 
-| IDOrdine | IDProdotto | NomeProdotto |
-| -------- | ---------- | ------------ |
+Immagina una tabella **DettagliOrdine** con chiave primaria composta da (`IDOrdine`, `IDProdotto`):
 
-Qui `NomeProdotto` dipende solo da `IDProdotto`, non dall’intera chiave (`IDOrdine + IDProdotto`).
+| IDOrdine | IDProdotto | NomeProdotto | Quantità |
+| -------- | ---------- | ------------ | -------- |
+| 101      | P01        | Penna        | 10       |
+| 101      | P02        | Quaderno     | 5        |
+| 102      | P01        | Penna        | 3        |
 
-**Corretto (2NF):**
+👉 Problema:
 
-- Tabella Ordini: (IDOrdine, IDProdotto, Quantità)
-- Tabella Prodotti: (IDProdotto, NomeProdotto)
+- La chiave primaria è **composta** da (`IDOrdine`, `IDProdotto`).
+- `NomeProdotto` dipende solo da **IDProdotto**, non dall’intera chiave.
+- Questo genera ridondanza (es. “Penna” ripetuto più volte).
+
+#### ✅ Corretto (2NF)
+
+Separiamo le informazioni in due tabelle:
+
+**Tabella Ordini_Prodotti (relazione tra ordini e prodotti)**
+
+| IDOrdine | IDProdotto | Quantità |
+| -------- | ---------- | -------- |
+| 101      | P01        | 10       |
+| 101      | P02        | 5        |
+| 102      | P01        | 3        |
+
+**Tabella Prodotti**
+
+| IDProdotto | NomeProdotto |
+| ---------- | ------------ |
+| P01        | Penna        |
+| P02        | Quaderno     |
+
+👉 Adesso:
+
+- In **Ordini_Prodotti**, ogni attributo dipende dall’intera chiave (`IDOrdine + IDProdotto`).
+- In **Prodotti**, `NomeProdotto` dipende solo da `IDProdotto`.
+- Abbiamo eliminato la dipendenza parziale e la ridondanza.
 
 ### 3. Terza Forma Normale (3NF)
 
