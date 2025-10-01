@@ -1,0 +1,4 @@
+SHOW DATABASES; # Elenca tutti i database disponibili
+CREATE DATABASE nome_database; # Crea un nuovo database
+
+USE nome_database; # Seleziona il database da utilizzare
