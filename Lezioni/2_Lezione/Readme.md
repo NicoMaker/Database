@@ -118,6 +118,7 @@ Se `Facoltà` dipende da `Matricola`, allora non è 3NF.
 
 - Variante più rigorosa della 3NF.
 - Ogni determinante in una dipendenza funzionale deve essere una chiave candidata.
+- ogni attributo non chiave deve dipendere dalla chiave 
 
 **Esempio non BCNF:**
 
