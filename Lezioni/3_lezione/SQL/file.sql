@@ -450,3 +450,11 @@ WHERE
     OR lastname LIKE 'A%'
 ORDER BY
     lastname DESC;
+
+SELECT
+    *
+FROM
+    students
+WHERE
+    age BETWEEN 6
+    AND 10;
