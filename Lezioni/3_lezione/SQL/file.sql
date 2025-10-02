@@ -34,14 +34,6 @@ CREATE TABLE students (
     age INT CHECK (age > 0)             -- Età deve essere positiva
 );
 
-INSERT INTO students (id, name, class, age) VALUES
-(1, 'Mario Rossi', '3A', 16),
-(2, 'Luca Bianchi', '4B', 17),
-(3, 'Giulia Verdi', '2C', 15),
-(4, 'Anna Neri', '5A', 18),
-(5, 'Francesco Gallo', '1B', 14);
-
-
 DESCRIPE nome_tabella; #mostra la struttura della tabella
 
 
