@@ -102,4 +102,9 @@ VALUES
 
 
 #svuota la tabella e resetta AUTO_INCREMENT
-TRUNCATE TABLE students;
+TRUNCATE TABLE nome_tabella;
+
+ALTER TABLE vecchio_nome RENAME TO nuovo_nome;
+#rinomina la tabella
+RENAME TABLE vecchio_nome TO nuovo_nome;
+#rinomina la tabella
