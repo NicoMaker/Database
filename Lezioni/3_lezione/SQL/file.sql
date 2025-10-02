@@ -73,33 +73,138 @@ ADD
     COLUMN lastname VARCHAR(40) NOT NULL;
 
 INSERT INTO
-    students (id, firstname, lastname, class, age)
-VALUES
-    (1, 'Luca', 'Rossi', '3A', 17),
-    (2, 'Giulia', 'Bianchi', '2B', 16),
+    students (
+        id,
+        firstname,
+        lastname,
+        class,
+        age
+    )
+VALUES (1, 'Luca', 'Rossi', '3A', 17),
+    (
+        2,
+        'Giulia',
+        'Bianchi',
+        '2B',
+        16
+    ),
     (3, 'Marco', 'Verdi', '1C', 15),
     (4, 'Sofia', 'Neri', '3A', 17),
-    (5, 'Alessandro', 'Russo', '2B', 16),
-    (6, 'Martina', 'Ferrari', '1C', 15),
-    (7, 'Davide', 'Conti', '3A', 18),
+    (
+        5,
+        'Alessandro',
+        'Russo',
+        '2B',
+        16
+    ),
+    (
+        6,
+        'Martina',
+        'Ferrari',
+        '1C',
+        15
+    ),
+    (
+        7,
+        'Davide',
+        'Conti',
+        '3A',
+        18
+    ),
     (8, 'Elena', 'Galli', '2B', 16),
-    (9, 'Federico', 'Costa', '1C', 15),
-    (10, 'Chiara', 'Fontana', '3A', 17);
+    (
+        9,
+        'Federico',
+        'Costa',
+        '1C',
+        15
+    ),
+    (
+        10,
+        'Chiara',
+        'Fontana',
+        '3A',
+        17
+    );
 
 INSERT INTO
-    students (lastname, firstname, class, age, id)
-VALUES
-    ('Romano', 'Valentina', '1A', 15, 11),
-    ('Marini', 'Tommaso', '2C', 16, 12),
-    ('Moretti', 'Giorgia', '3B', 17, 13),
-    ('Esposito', 'Matteo', '1B', 15, 14),
-    ('Bellini', 'Francesca', '2A', 16, 15),
-    ('Barbieri', 'Lorenzo', '3C', 18, 16),
-    ('Rinaldi', 'Alice', '1A', 15, 17),
-    ('Galli', 'Riccardo', '2C', 16, 18),
-    ('Ferraro', 'Beatrice', '3B', 17, 19),
-    ('Fabbri', 'Andrea', '1B', 15, 20);
-
+    students (
+        lastname,
+        firstname,
+        class,
+        age,
+        id
+    )
+VALUES (
+        'Romano',
+        'Valentina',
+        '1A',
+        15,
+        11
+    ),
+    (
+        'Marini',
+        'Tommaso',
+        '2C',
+        16,
+        12
+    ),
+    (
+        'Moretti',
+        'Giorgia',
+        '3B',
+        17,
+        13
+    ),
+    (
+        'Esposito',
+        'Matteo',
+        '1B',
+        15,
+        14
+    ),
+    (
+        'Bellini',
+        'Francesca',
+        '2A',
+        16,
+        15
+    ),
+    (
+        'Barbieri',
+        'Lorenzo',
+        '3C',
+        18,
+        16
+    ),
+    (
+        'Rinaldi',
+        'Alice',
+        '1A',
+        15,
+        17
+    ),
+    (
+        'Galli',
+        'Riccardo',
+        '2C',
+        16,
+        18
+    ),
+    (
+        'Ferraro',
+        'Beatrice',
+        '3B',
+        17,
+        19
+    ),
+    (
+        'Fabbri',
+        'Andrea',
+        '1B',
+        15,
+        20
+    );
 
 #svuota la tabella e resetta AUTO_INCREMENT
 TRUNCATE TABLE nome_tabella;
@@ -111,3 +216,23 @@ RENAME TABLE vecchio_nome TO nuovo_nome;
 
 DROP TABLE nome_tabella;
 #elimina la tabella
+
+SELECT * FROM students WHERE studentid = 6;
+
+SELECT * FROM students WHERE class != 'first';
+
+SELECT * FROM students WHERE class = 'first';
+
+SELECT firstname, lastname, age, age + 1
+FROM students
+WHERE
+    NOT class = 'first';
+
+SELECT
+    firstname as nome,
+    lastname as cognome,
+    age as eta,
+    age + 1 as nuova
+FROM students
+WHERE
+    class != 'first';
