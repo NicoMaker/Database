@@ -8,7 +8,9 @@ GRANT ALL ON *.* TO 'user' WITH GRANT OPTION; # Concede tutti i privilegi su tut
 SHOW DATABASE; #mostra i database esistenti
 USE DATABASE; #usi database
 
-SELECT DATABASES(); #mostra il database in uso
+SELECT DATABASE(); #mostra il database in uso
 SELECT USERS(); #mostra gli utenti esistenti
 
 SHOW TABLES; #mostra le tabelle esistenti nel database in uso
+
+SELECT * FROM nome_tabella; #mostra il contenuto della tabella
