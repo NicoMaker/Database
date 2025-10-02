@@ -372,3 +372,18 @@ WHERE
         WHERE
             customers.userid = orders.userid
     );
+
+SELECT
+    name as nome_completo,
+    phone as telefono
+FROM
+    customers as C
+WHERE
+    NOT EXISTS (
+        SELECT
+            *
+        FROM
+            orders as O
+        WHERE
+            C.userid = O.userid
+    );
