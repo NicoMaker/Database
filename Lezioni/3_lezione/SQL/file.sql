@@ -243,5 +243,21 @@ SELECT * FROM students WHERE class = 'first' AND age != 5;
 
 SELECT * FROM students WHERE age = 5 OR age = 6;
 
-SELECT * FROM students WHERE (age = 5 OR age = 6) AND firstname = 'John';
-SELECT * FROM students WHERE firstname = 'John' AND (age = 5 OR age = 6);
+SELECT *
+FROM students
+WHERE (
+        age = 5
+        OR age = 6
+    )
+    AND firstname = 'John';
+
+SELECT *
+FROM students
+WHERE
+    firstname = 'John'
+    AND (
+        age = 5
+        OR age = 6
+    );
+
+sELECT * FROM students WHERE age IN (5, 6);
