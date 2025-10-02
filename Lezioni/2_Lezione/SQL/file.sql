@@ -10,6 +10,6 @@ USE nome_database;
 show TABLES;
 
 # Elenca tutte le tabelle nel database selezionato
-mysql - u root - p;
+mysql -u root -p;
 
 # Accedi a MySQL come utente root
