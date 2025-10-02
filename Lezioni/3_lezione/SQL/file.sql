@@ -20,9 +20,32 @@ Select nome FROM USER; #mostra il contenuto della colonna nome della tabella USE
 CREATE DATABASE NomeDatabase; #crea un database
 DROP DATABASE NomeDatabase; #elimina un database
 
-CREATE TABLE student(
- id INT NOT NULL PRIMARY KEY,
- name VARCHAR(400) NOT NULL,
- class VARCHAR(20) NOT NULL,
- age INT
+CREATE TABLE student (
+    id INT NOT NULL PRIMARY KEY,   -- Identificativo univoco dello studente
+    name VARCHAR(400) NOT NULL,    -- Nome e cognome (max 400 caratteri)
+    class VARCHAR(20) NOT NULL,    -- Classe frequentata (es. "3A", "4B")
+    age INT                        -- Età (può essere NULL se non inserita)
 );
+
+CREATE TABLE student (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- ID univoco generato automaticamente
+    name VARCHAR(100) NOT NULL,         -- Nome studente (max 100 caratteri)
+    class VARCHAR(20) NOT NULL,         -- Classe frequentata
+    age INT CHECK (age > 0)             -- Età deve essere positiva
+);
+
+INSERT INTO student (id, name, class, age) VALUES
+(1, 'Mario Rossi', '3A', 16),
+(2, 'Luca Bianchi', '4B', 17),
+(3, 'Giulia Verdi', '2C', 15),
+(4, 'Anna Neri', '5A', 18),
+(5, 'Francesco Gallo', '1B', 14);
+
+
+DESCRIPE nome_tabella; #mostra la struttura della tabella
+
+
+ALTER TABLE student
+DROP COLUMN name,
+ADD COLUMN firstname VARCHAR(40) NOT NULL,
+ADD COLUMN lastname VARCHAR(40) NOT NULL;
