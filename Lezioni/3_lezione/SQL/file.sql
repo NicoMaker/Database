@@ -101,6 +101,5 @@ VALUES
     ('Fabbri', 'Andrea', '1B', 15, 20);
 
 
-TRUNCATE TABLE students;
-
 #svuota la tabella e resetta AUTO_INCREMENT
+TRUNCATE TABLE students;
