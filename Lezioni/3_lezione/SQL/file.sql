@@ -1,1 +1,1 @@
-CREATE USER ADDRESS 'localhost' IDENTIFIED BY 'password'; # Crea un nuovo utente
+CREATE USER ADDRESS 'user' IDENTIFIED BY 'password'; # Crea un nuovo utente
