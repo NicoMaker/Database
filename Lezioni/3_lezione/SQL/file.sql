@@ -409,6 +409,14 @@ FROM
 WHERE
     lastname LIKE 'D%';
 
+SELECT
+    firstname,
+    lastname
+FROM
+    students
+WHERE
+    lastname LIKE 'D%'
+    OR lastname LIKE 'A%';
 
 SELECT
     firstname,
@@ -416,7 +424,10 @@ SELECT
 FROM
     students
 WHERE
-    lastname LIKE 'D%' OR lastname LIKE 'A%';
+    lastname LIKE 'D%'
+    OR lastname LIKE 'A%'
+ORDER BY
+    lastname;
 
 SELECT
     firstname,
@@ -424,4 +435,18 @@ SELECT
 FROM
     students
 WHERE
-    lastname LIKE 'D%' OR lastname LIKE 'A%' ORDER BY lastname;
+    lastname LIKE 'D%'
+    OR lastname LIKE 'A%'
+ORDER BY
+    lastname ASC;
+
+SELECT
+    firstname,
+    lastname
+FROM
+    students
+WHERE
+    lastname LIKE 'D%'
+    OR lastname LIKE 'A%'
+ORDER BY
+    lastname DESC;
