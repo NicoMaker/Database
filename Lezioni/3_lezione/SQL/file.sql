@@ -7,7 +7,7 @@ ALTER USER 'utente' IDENTIFIED BY 'nuova_password';
 GRANT ALL ON *.* TO 'user' WITH GRANT OPTION;
 
 # Concede tutti i privilegi su tutti i database e tabelle all'utente
-SHOW DATABASE;
+SHOW DATABASES;
 
 #mostra i database esistenti
 USE DATABASE;
