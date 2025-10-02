@@ -8,7 +8,7 @@ SHOW DATABASE; #mostra i database esistenti
 USE DATABASE; #usi database
 
 SELECT DATABASE(); #mostra il database in uso
-SELECT USERS(); #mostra gli utenti esistenti
+SELECT USER(); #mostra gli utenti esistenti
 
 SHOW TABLES; #mostra le tabelle esistenti nel database in uso
 
