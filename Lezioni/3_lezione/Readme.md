@@ -46,6 +46,14 @@
    - I dati devono persistere anche in caso di guasto del sistema.
    - Il DBMS usa log delle transazioni, checkpoint e meccanismi di recovery.
 
+- file NOSQL
+  - scalabilità orizzontale e non relazionali (accessibilità e usabilità del db)
+    - grandi quantità di dati e non preciso tipo di dato
+  - NON relazionali (dati snelli)
+    - MONGODB
+    - CASSANDRA
+    - COUCHDB
+
 ## Comandi SQL
 
 - [file sql](SQL/file.sql)
