@@ -328,3 +328,17 @@ WHERE
         WHERE
             employees.employeeid = projects.employeeid
     );
+
+SELECT
+    *
+FROM
+    employees
+WHERE
+    NOT EXISTS (
+        SELECT
+            *
+        FROM
+            projects
+        WHERE
+            employees.employeeid = projects.employeeid
+    );
