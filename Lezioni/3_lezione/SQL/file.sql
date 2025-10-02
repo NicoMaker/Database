@@ -343,21 +343,32 @@ WHERE
             employees.employeeid = projects.employeeid
     );
 
-SELECT name,phone
-FROM customers as C
-WHERE 
-NOT EXISTS
-(
-    SELECT * FROM orders as O
-    WHERE C.userid = O.userid
-);
+SELECT
+    name,
+    phone
+FROM
+    customers as C
+WHERE
+    NOT EXISTS (
+        SELECT
+            *
+        FROM
+            orders as O
+        WHERE
+            C.userid = O.userid
+    );
 
-
-SELECT name,phone
-FROM customers
-WHERE 
-NOT EXISTS
-(
-    SELECT * FROM orders
-    WHERE customers.userid = orders.userid
-);
+SELECT
+    name,
+    phone
+FROM
+    customers
+WHERE
+    NOT EXISTS (
+        SELECT
+            *
+        FROM
+            orders
+        WHERE
+            customers.userid = orders.userid
+    );
