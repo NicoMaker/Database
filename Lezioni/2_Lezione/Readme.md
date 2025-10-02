@@ -155,6 +155,6 @@ Se `Facoltà` dipende da `Matricola`, allora non è 3NF.
 - Tabella Studente-Sport: (Studente, Sport)
 
 
-## Comandi db
+## Comandi SQL
 
 - [file sql](SQL/file.sql)

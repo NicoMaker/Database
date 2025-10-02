@@ -1,0 +1,1 @@
+CREATE USER ADDRESS 'localhost' IDENTIFIED BY 'password'; # Crea un nuovo utente
