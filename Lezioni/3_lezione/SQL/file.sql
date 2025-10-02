@@ -392,8 +392,7 @@ SELECT
     name as nome_completo,
     phone as telefono
 FROM
-    customers as C
-WHEREEXISTS (
+    customers as C WHEREEXISTS (
         SELECT
             *
         FROM
@@ -401,3 +400,11 @@ WHEREEXISTS (
         WHERE
             C.userid = O.userid
     );
+
+SELECT
+    firstname,
+    lastname
+FROM
+    students
+WHERE
+    lastname LIKE 'D%';
