@@ -80,7 +80,8 @@ INSERT INTO
         class,
         age
     )
-VALUES (1, 'Luca', 'Rossi', '3A', 17),
+VALUES
+    (1, 'Luca', 'Rossi', '3A', 17),
     (
         2,
         'Giulia',
@@ -135,7 +136,8 @@ INSERT INTO
         age,
         id
     )
-VALUES (
+VALUES
+    (
         'Romano',
         'Valentina',
         '1A',
@@ -209,22 +211,44 @@ VALUES (
 #svuota la tabella e resetta AUTO_INCREMENT
 TRUNCATE TABLE nome_tabella;
 
-ALTER TABLE vecchio_nome RENAME TO nuovo_nome;
+ALTER TABLE
+    vecchio_nome RENAME TO nuovo_nome;
+
 #rinomina la tabella
 RENAME TABLE vecchio_nome TO nuovo_nome;
+
 #rinomina la tabella
-
 DROP TABLE nome_tabella;
+
 #elimina la tabella
+SELECT
+    *
+FROM
+    students
+WHERE
+    studentid = 6;
 
-SELECT * FROM students WHERE studentid = 6;
+SELECT
+    *
+FROM
+    students
+WHERE
+    class != 'first';
 
-SELECT * FROM students WHERE class != 'first';
+SELECT
+    *
+FROM
+    students
+WHERE
+    class = 'first';
 
-SELECT * FROM students WHERE class = 'first';
-
-SELECT firstname, lastname, age, age + 1
-FROM students
+SELECT
+    firstname,
+    lastname,
+    age,
+    age + 1
+FROM
+    students
 WHERE
     NOT class = 'first';
 
@@ -233,26 +257,50 @@ SELECT
     lastname as cognome,
     age as eta,
     age + 1 as nuova
-FROM students
+FROM
+    students
 WHERE
     class != 'first';
 
-SELECT * FROM students WHERE class = 'first' AND age = 5;
+SELECT
+    *
+FROM
+    students
+WHERE
+    class = 'first'
+    AND age = 5;
 
-SELECT * FROM students WHERE class = 'first' AND age != 5;
+SELECT
+    *
+FROM
+    students
+WHERE
+    class = 'first'
+    AND age != 5;
 
-SELECT * FROM students WHERE age = 5 OR age = 6;
+SELECT
+    *
+FROM
+    students
+WHERE
+    age = 5
+    OR age = 6;
 
-SELECT *
-FROM students
-WHERE (
+SELECT
+    *
+FROM
+    students
+WHERE
+    (
         age = 5
         OR age = 6
     )
     AND firstname = 'John';
 
-SELECT *
-FROM students
+SELECT
+    *
+FROM
+    students
 WHERE
     firstname = 'John'
     AND (
@@ -260,4 +308,23 @@ WHERE
         OR age = 6
     );
 
-sELECT * FROM students WHERE age IN (5, 6);
+sELECT
+    *
+FROM
+    students
+WHERE
+    age IN (5, 6);
+
+SELECT
+    *
+FROM
+    employees
+WHERE
+    EXISTS (
+        SELECT
+            *
+        FROM
+            projects
+        WHERE
+            employees.employeeid = projects.employeeid
+    );
