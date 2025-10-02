@@ -459,6 +459,12 @@ WHERE
     age BETWEEN 6
     AND 10;
 
-SELECT CONCAT(lastname," ",firstname, "-",age)AS nome_completo FROM students;
+SELECT
+    CONCAT(lastname, " ", firstname, "-", age) AS nome_completo
+FROM
+    students;
 
-SELECT CONCAT(lastname," ",firstname, "-",age)AS nome_completo FROM students;
+SELECT
+    CONCAT(lastname, " ", firstname, "-", age) AS nome_completo
+FROM
+    students;
