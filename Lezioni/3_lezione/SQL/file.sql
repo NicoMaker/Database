@@ -86,6 +86,21 @@ VALUES
     (9, 'Federico', 'Costa', '1C', 15),
     (10, 'Chiara', 'Fontana', '3A', 17);
 
+INSERT INTO
+    students (lastname, firstname, class, age, id)
+VALUES
+    ('Romano', 'Valentina', '1A', 15, 11),
+    ('Marini', 'Tommaso', '2C', 16, 12),
+    ('Moretti', 'Giorgia', '3B', 17, 13),
+    ('Esposito', 'Matteo', '1B', 15, 14),
+    ('Bellini', 'Francesca', '2A', 16, 15),
+    ('Barbieri', 'Lorenzo', '3C', 18, 16),
+    ('Rinaldi', 'Alice', '1A', 15, 17),
+    ('Galli', 'Riccardo', '2C', 16, 18),
+    ('Ferraro', 'Beatrice', '3B', 17, 19),
+    ('Fabbri', 'Andrea', '1B', 15, 20);
+
+
 TRUNCATE TABLE students;
 
 #svuota la tabella e resetta AUTO_INCREMENT
