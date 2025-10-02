@@ -408,3 +408,20 @@ FROM
     students
 WHERE
     lastname LIKE 'D%';
+
+
+SELECT
+    firstname,
+    lastname
+FROM
+    students
+WHERE
+    lastname LIKE 'D%' OR lastname LIKE 'A%';
+
+SELECT
+    firstname,
+    lastname
+FROM
+    students
+WHERE
+    lastname LIKE 'D%' OR lastname LIKE 'A%' ORDER BY lastname;
