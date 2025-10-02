@@ -387,3 +387,17 @@ WHERE
         WHERE
             C.userid = O.userid
     );
+
+SELECT
+    name as nome_completo,
+    phone as telefono
+FROM
+    customers as C
+WHEREEXISTS (
+        SELECT
+            *
+        FROM
+            orders as O
+        WHERE
+            C.userid = O.userid
+    );
