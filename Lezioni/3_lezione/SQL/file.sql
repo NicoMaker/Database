@@ -16,3 +16,5 @@ SELECT * FROM nome_tabella; #mostra il contenuto della tabella
 
 
 Select nome FROM USER; #mostra il contenuto della colonna nome della tabella USER
+
+CREATE DATABASE NomeDatabase; #crea un database
