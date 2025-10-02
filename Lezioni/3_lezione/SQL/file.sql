@@ -236,3 +236,9 @@ SELECT
 FROM students
 WHERE
     class != 'first';
+
+SELECT * FROM students
+WHERE class = 'first' AND age = 5;
+
+SELECT * FROM students
+WHERE class = 'first' AND age != 5;
