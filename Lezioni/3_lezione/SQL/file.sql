@@ -18,3 +18,11 @@ SELECT * FROM nome_tabella; #mostra il contenuto della tabella
 Select nome FROM USER; #mostra il contenuto della colonna nome della tabella USER
 
 CREATE DATABASE NomeDatabase; #crea un database
+DROP DATABASE NomeDatabase; #elimina un database
+
+CREATE TABLE student(
+ id INT NOT NULL PRIMARY KEY,
+ name VARCHAR(400) NOT NULL,
+ class VARCHAR(20) NOT NULL,
+ age INT
+);
