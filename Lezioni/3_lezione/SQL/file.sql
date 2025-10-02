@@ -49,3 +49,17 @@ ALTER TABLE students
 DROP COLUMN name,
 ADD COLUMN firstname VARCHAR(40) NOT NULL,
 ADD COLUMN lastname VARCHAR(40) NOT NULL;
+
+INSERT INTO students (id, firstname, lastname, class, age) VALUES
+(1, 'Luca', 'Rossi', '3A', 17),
+(2, 'Giulia', 'Bianchi', '2B', 16),
+(3, 'Marco', 'Verdi', '1C', 15),
+(4, 'Sofia', 'Neri', '3A', 17),
+(5, 'Alessandro', 'Russo', '2B', 16),
+(6, 'Martina', 'Ferrari', '1C', 15),
+(7, 'Davide', 'Conti', '3A', 18),
+(8, 'Elena', 'Galli', '2B', 16),
+(9, 'Federico', 'Costa', '1C', 15),
+(10, 'Chiara', 'Fontana', '3A', 17);
+
+TRUNCATE TABLE students; #svuota la tabella e resetta AUTO_INCREMENT
