@@ -108,3 +108,6 @@ ALTER TABLE vecchio_nome RENAME TO nuovo_nome;
 #rinomina la tabella
 RENAME TABLE vecchio_nome TO nuovo_nome;
 #rinomina la tabella
+
+DROP TABLE nome_tabella;
+#elimina la tabella
