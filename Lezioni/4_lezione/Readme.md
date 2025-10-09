@@ -23,6 +23,10 @@
 - tabella che hai di riferimento
   - riga di corrispondenza in base a cosa selezioni righe di riferimento in base a cosa selezionato
 
+### CROSS JOIN
+
+- prodotto cartesiano di tutte le possibili combinazioni di tutte le join 
+
 ### FULL JOIN
 
 - tutti i casi in qualsisi opzione per qualsiasi caso (left/right assieme)
