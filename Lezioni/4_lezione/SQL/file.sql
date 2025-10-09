@@ -184,3 +184,11 @@ SELECT
 FROM
     table1
     JOIN table2 ON table1.column1 = table2.column2;
+
+SELECT 
+    name,
+    jobtitle,
+    title
+FROM
+    employees
+    JOIN projects ON employees.employeeid = projects.employeeid;
