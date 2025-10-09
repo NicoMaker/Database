@@ -210,3 +210,13 @@ SELECT
 FROM
     employees
     LEFT JOIN projects ON employees.employeeid = projects.employeeid;
+
+SELECT
+    employees.name,
+    employees.jobtitle,
+    projects.title
+FROM
+    employees
+    LEFT JOIN projects ON employees.employeeid = projects.employeeid
+WHERE
+    projects.title IS NULL;
