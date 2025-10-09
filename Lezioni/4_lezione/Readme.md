@@ -25,7 +25,7 @@
 
 ### FULL JOIN
 
-- tutti i casi in qualsisi opzione per qualsiasi caso 
+- tutti i casi in qualsisi opzione per qualsiasi caso (left/right assieme)
 
 ## Comandi SQL
 
