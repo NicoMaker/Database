@@ -16,8 +16,7 @@ SELECT
 FROM
     students;
 
-
-SELECT 
+SELECT
     jobtitle,
     COUNT(*)
 FROM
@@ -25,33 +24,34 @@ FROM
 GROUP BY
     jobtitle;
 
-SELECT 
+SELECT
     jobtitle as ruolo,
     COUNT(*)
 FROM
     employees
-WHERE 
+WHERE
     jobtitle = 'Web Developer'
 GROUP BY
     jobtitle;
 
-
-SELECT 
+SELECT
     name,
     jobtitle,
     salary
-FROM 
+FROM
     employees
-WHERE salary >= 3500;
+WHERE
+    salary >= 3500;
 
-
-SELECT 
+SELECT
     name,
     jobtitle,
     salary
-FROM 
+FROM
     employees
-GROUP BY 
-    name, jobtitle, salary
-HAVING 
+GROUP BY
+    name,
+    jobtitle,
+    salary
+HAVING
     salary >= 3500;
