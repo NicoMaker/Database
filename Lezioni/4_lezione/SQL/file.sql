@@ -202,3 +202,11 @@ SELECT
 FROM
     customers AS c
     JOIN orders AS o ON c.userid = o.userid;
+
+SELECT
+    employees.name,
+    employees.jobtitle,
+    projects.title
+FROM
+    employees
+    LEFT JOIN projects ON employees.employeeid = projects.employeeid;

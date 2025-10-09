@@ -2,7 +2,7 @@
 
 # 4 Lezione 09 Ottobre 2025
 
-## Heaving 
+## Heaving
 
 - lavora su clausole aggregate
 
@@ -10,12 +10,18 @@
 
 - vista dati di una tabella unita ad un'altra
 
-### INNWER JOIN
+### INNER JOIN
 
-- tira fuori da select 
+- tira fuori da select
   - tutti quelli che hanno corrispondenza sia a dx che a sx della tabella di sx e dx
     - solo con quelli con un legame tra le varie tabelle
 
+### OUTER JOIN
+
+#### LEFT/RIGHT JOIN
+
+- tabella che hai di riferimento
+  - riga di corrispondenza in base a cosa selezioni righr di riferimento in base a cosa selezionato
 
 ## Comandi SQL
 
