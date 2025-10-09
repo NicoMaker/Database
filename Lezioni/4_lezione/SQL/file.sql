@@ -67,9 +67,43 @@ HAVING
     salary >= 3500;
 
 SELECT
-    *
+    a
 FROM
     students
 ORDER BY
     age DESC;
 
+
+SELECT
+    age,
+    COUNT(*) AS total_students
+FROM
+    students
+GROUP BY
+    age
+ORDER BY
+    age DESC;
+
+
+SELECT
+    age,
+    GROUP_CONCAT(CONCAT(firstname, ' ', lastname) SEPARATOR ', ') AS students,
+    COUNT(*) AS total_students
+FROM
+    students
+GROUP BY
+    age
+ORDER BY
+    age DESC;
+
+
+SELECT
+    age,
+    COUNT(*) AS total_students
+FROM
+    students
+GROUP BY
+    age
+ORDER BY
+    age DESC
+LIMIt 2;
