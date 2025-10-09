@@ -270,7 +270,8 @@ FROM
 WHERE
     c.name IS NULL;
 
-CREATE VIEW active_projects AS
+CREATE VIEW
+    active_projects AS
 SELECT
     employees.name,
     employees.jobtitle,
@@ -278,5 +279,31 @@ SELECT
 FROM
     employees
     LEFT JOIN projects ON employees.employeeid = projects.employeeid;
+
+CREATE VIEW
+    ordini_Jimmy AS
+SELECT
+    o.items,
+    o.total
+FROM
+    orders AS o
+    LEFT JOIN customers AS c ON c.userid = o.userid
+WHERE
+    c.name = 'Jimmy Jones'
+ORDER BY
+    o.items ASC;
+
+CREATE VIEW
+    totale_ordini_Jimmy AS
+SELECT
+    c.name,
+    SUM(o.total) AS totale
+FROM
+    orders AS o
+    LEFT JOIN customers AS c ON c.userid = o.userid
+WHERE
+    c.name = 'Jimmy Jones'
+GROUP BY
+    c.name;
 
 DROP VIEW
