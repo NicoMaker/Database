@@ -73,7 +73,6 @@ FROM
 ORDER BY
     age DESC;
 
-
 SELECT
     age,
     COUNT(*) AS total_students
@@ -84,10 +83,9 @@ GROUP BY
 ORDER BY
     age DESC;
 
-
 SELECT
     age,
-    GROUP_CONCAT(CONCAT(firstname, ' ', lastname) SEPARATOR ', ') AS students,
+    GROUP_CONCAT (CONCAT (firstname, ' ', lastname) SEPARATOR ', ') AS students,
     COUNT(*) AS total_students
 FROM
     students
@@ -95,7 +93,6 @@ GROUP BY
     age
 ORDER BY
     age DESC;
-
 
 SELECT
     age,
@@ -106,20 +103,28 @@ GROUP BY
     age
 ORDER BY
     age DESC
-LIMIt 2;
-
+LIMIt
+    2;
 
 SELECT
-    CONCAT(firstname, ' ', lastname) AS full_name
+    CONCAT (firstname, ' ', lastname) AS full_name
 FROM
     students;
 
-SELECT 
-    NOW() AS data_ora_completa,
-    CURDATE() AS data_corrente,
-    CURTIME() AS ora_corrente;
+SELECT
+    NOW () AS data_ora_completa,
+    CURDATE () AS data_corrente,
+    CURTIME () AS ora_corrente;
 
-SELECT 
-    NOW() AS data_ora_completa,
+SELECT
+    NOW () AS data_ora_completa,
     CURRENT_DATE() AS data_corrente,
     CURRENT_TIME() AS ora_corrente;
+
+SELECT
+    *
+FROM
+    orders
+WHERE
+    orderdate = '2025-10-02 16:00:41';
+
