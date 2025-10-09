@@ -192,3 +192,13 @@ SELECT
 FROM
     employees
     JOIN projects ON employees.employeeid = projects.employeeid;
+
+SELECT
+    c.userid,
+    c.name,
+    c.phone,
+    o.items,
+    o.total
+FROM
+    customers AS c
+    JOIN orders AS o ON c.userid = o.userid;
