@@ -159,3 +159,12 @@ FROM
     students;
 
 DELETE FROM students2;
+
+INSERT INTO
+    students2 (firstname, lastname, age)
+SELECT
+    firstname,
+    lastname,
+    age + 1
+FROM
+    students;
