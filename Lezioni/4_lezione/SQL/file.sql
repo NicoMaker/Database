@@ -230,3 +230,13 @@ FROM
     LEFT JOIN projects ON employees.employeeid = projects.employeeid
 WHERE
     projects.title IS not NULL;
+
+
+SELECT 
+    c.name,
+    c.phone
+FROM
+    customers as c
+    LEFT JOIN orders as o on c.userid = o.userid
+WHERE 
+    o.userid IS NULL;
