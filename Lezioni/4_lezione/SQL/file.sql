@@ -172,3 +172,15 @@ FROM
 UPDATE students
 SET
     age = age + 1;
+
+SELECT
+    *
+FROM
+    table1
+    JOIN table2;
+
+SELECT
+    *
+FROM
+    table1
+    JOIN table2 ON table1.column1 = table2.column2;
