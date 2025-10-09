@@ -168,3 +168,7 @@ SELECT
     age + 1
 FROM
     students;
+
+UPDATE students
+SET
+    age = age + 1;
