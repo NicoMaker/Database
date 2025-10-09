@@ -14,6 +14,7 @@
 
 - tira fuori da select 
   - tutti quelli che hanno corrispondenza sia a dx che a sx della tabella di sx e dx
+    - solo con quelli con un legame tra le varie tabelle
 
 
 ## Comandi SQL
