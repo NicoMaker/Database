@@ -128,3 +128,26 @@ FROM
 WHERE
     orderdate = '2025-10-02 16:00:41';
 
+
+
+INSERT INTO teachers (teacherid, name, phone)
+VALUES
+(6, 'Giulia Rossi', '3216549870'),
+(7, 'Luca Bianchi', '9876543210'),
+(8, 'Martina Verdi', '4567891230'),
+(9, 'Alessandro Neri', '7891234560'),
+(10, 'Francesca Conti', '6543219870'),
+(11, 'Davide Russo', '1237894560'),
+(12, 'Chiara Ferrari', '3219876540'),
+(13, 'Matteo Esposito', '9871236540'),
+(14, 'Sara Galli', '4561237890'),
+(15, 'Andrea Romano', '7894561230');
+
+
+CREATE TABLE students2(
+    studentid INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    firstname VARCHAR(40) NOT NULL,
+    lastname VARCHAR(40) NOT NULL,
+    class VARCHAR(20),
+    age INT
+);
