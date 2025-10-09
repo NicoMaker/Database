@@ -113,3 +113,13 @@ SELECT
     CONCAT(firstname, ' ', lastname) AS full_name
 FROM
     students;
+
+SELECT 
+    NOW() AS data_ora_completa,
+    CURDATE() AS data_corrente,
+    CURTIME() AS ora_corrente;
+
+SELECT 
+    NOW() AS data_ora_completa,
+    CURRENT_DATE() AS data_corrente,
+    CURRENT_TIME() AS ora_corrente;
