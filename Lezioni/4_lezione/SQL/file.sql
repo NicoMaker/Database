@@ -240,3 +240,12 @@ FROM
     LEFT JOIN orders as o on c.userid = o.userid
 WHERE 
     o.userid IS NULL;
+
+SELECT
+   o.orderid,
+   o.items,
+   o.userid
+FROM
+    orders as o
+    LEFT JOIN customers as c on c.userid = o.userid
+WHERE c.name is null;
