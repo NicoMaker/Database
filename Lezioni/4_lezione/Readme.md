@@ -21,7 +21,7 @@
 #### LEFT/RIGHT JOIN
 
 - tabella che hai di riferimento
-  - riga di corrispondenza in base a cosa selezioni righr di riferimento in base a cosa selezionato
+  - riga di corrispondenza in base a cosa selezioni righe di riferimento in base a cosa selezionato
 
 ## Comandi SQL
 
