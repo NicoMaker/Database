@@ -55,3 +55,21 @@ GROUP BY
     salary
 HAVING
     salary >= 3500;
+
+SELECT
+    salary,
+    COUNT(*) AS num_employees
+FROM
+    employees
+GROUP BY
+    salary
+HAVING
+    salary >= 3500;
+
+SELECT
+    *
+FROM
+    students
+ORDER BY
+    age DESC;
+
