@@ -108,3 +108,8 @@ ORDER BY
     age DESC
 LIMIt 2;
 
+
+SELECT
+    CONCAT(firstname, ' ', lastname) AS full_name
+FROM
+    students;
