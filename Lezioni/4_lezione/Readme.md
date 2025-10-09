@@ -23,6 +23,10 @@
 - tabella che hai di riferimento
   - riga di corrispondenza in base a cosa selezioni righe di riferimento in base a cosa selezionato
 
+### FULL JOIN
+
+- tutti i casi in qualsisi opzione per qualsiasi caso 
+
 ## Comandi SQL
 
 - [file sql](SQL/file.sql)

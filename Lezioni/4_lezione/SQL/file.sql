@@ -231,21 +231,42 @@ FROM
 WHERE
     projects.title IS not NULL;
 
-
-SELECT 
+SELECT
     c.name,
     c.phone
 FROM
     customers as c
     LEFT JOIN orders as o on c.userid = o.userid
-WHERE 
+WHERE
     o.userid IS NULL;
 
 SELECT
-   o.orderid,
-   o.items,
-   o.userid
+    o.orderid,
+    o.items,
+    o.userid
 FROM
     orders as o
     LEFT JOIN customers as c on c.userid = o.userid
-WHERE c.name is null;
+WHERE
+    c.name is null;
+
+SELECT
+    o.orderid,
+    o.items,
+    o.userid
+FROM
+    orders as o
+    LEFT JOIN customers as c on c.userid = o.userid
+WHERE
+    c.name is null;
+
+SELECT
+    o.orderid,
+    o.items,
+    o.userid
+FROM
+    customers as c
+    RIGHT JOIN orders as o ON c.userid = o.userid
+WHERE
+    c.name IS NULL;
+
