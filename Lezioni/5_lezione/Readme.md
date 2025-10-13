@@ -2,6 +2,6 @@
 
 # 5 Lezione 13 Ottobre 2025
 
-## Comandi SQL
+## Esercizi
 
-- [file sql](SQL/file.sql)
+- [Esercizi](ex1))
