@@ -97,3 +97,14 @@ SELECT
     ca.nome_categoria
 FROM Clienti c
 CROSS JOIN Categorie ca;
+
+
+# Quali clienti hanno acquistato prodotti specifici? Elenca il nome cliente, il nome del prodotto e la quantità acquistata.
+SELECT 
+    c.nome_cliente,
+    p.nome_prodotto,
+    op.quantita
+FROM Clienti c
+JOIN Ordini o ON c.id_cliente = o.id_cliente
+JOIN OrdiniProdotti op ON o.id_ordine = op.id_ordine
+JOIN Prodotti p ON op.id_prodotto = p.id_prodotto;
