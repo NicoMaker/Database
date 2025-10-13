@@ -4,4 +4,4 @@
 
 ## Esercizi
 
-- [Esercizi](ex1))
+- [Esercizi](ex1)
