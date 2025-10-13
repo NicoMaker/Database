@@ -5,3 +5,4 @@
 ## Esercizi
 
 - [Esercizio 1](ex1)
+- [Esercizio 2](ex2)
