@@ -113,4 +113,19 @@ FROM Enrollments e
 GROUP BY e.CourseID
 ORDER BY NumeroIscritti DESC;
 
-# Trova gli studenti che sono iscritti in corsi con punteggio medio superiore a 70.
+# Trova gli studenti che sono iscritti in corsi con punteggio medio superiore a 70
+SELECT 
+    (SELECT s.FirstName FROM Students s WHERE s.StudentID = e.StudentID) AS FirstName,
+    (SELECT s.LastName FROM Students s WHERE s.StudentID = e.StudentID) AS LastName,
+    ROUND(AVG(e.Grade), 0) AS Media
+FROM Enrollments e
+GROUP BY e.StudentID
+HAVING Media > 70;
+
+# Seleziona il punteggio più basso per ogni corso
+SELECT 
+    (SELECT c.CourseName FROM Courses c WHERE c.CourseID = e.CourseID) AS CourseName,
+    ROUND(MIN(e.Grade), 0)  AS MinGrade
+FROM Enrollments e
+GROUP BY e.CourseID
+ORDER BY MinGrade;
