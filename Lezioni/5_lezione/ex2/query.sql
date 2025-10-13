@@ -142,9 +142,55 @@ WHERE p.id_prodotto IS NULL;
 SELECT
     o.id_ordine,
     o.data_ordine,
-    o.totale
+    o.totale,
     p.nome_prodotto
 FROM Ordini o
 JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine
 JOIN Prodotti p ON do.id_prodotto = p.id_prodotto
 WHERE p.id_categoria IS NULL;
+
+
+# Trova gli ordini senza dettagli registrati.
+SELECT
+    o.id_ordine,
+    o.data_ordine,
+    o.totale
+FROM Ordini o
+LEFT JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine
+WHERE do.id_prodotto IS NULL;
+
+# Visualizza l’elenco di clienti che non hanno effettuato ordini.
+SELECT
+    c.nome_cliente
+FROM Clienti c
+LEFT JOIN Ordini o ON c.id_cliente = o.id_cliente
+WHERE o.id_ordine IS NULL;
+
+
+# Trova l’elenco dei prodotti acquistati da ciascun cliente. Includi anche i clienti che non hanno acquistato nulla.
+SELECT
+    c.nome_cliente,
+    p.nome_prodotto
+FROM Clienti c
+LEFT JOIN Ordini o ON c.id_cliente = o.id_cliente
+LEFT JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine
+LEFT JOIN Prodotti p ON do.id_prodotto = p.id_prodotto;
+
+# Visualizza i dettagli degli ordini per categoria di prodotto.
+SELECT
+    c.nome_categoria,
+    o.data_ordine,
+    o.totale
+FROM Ordini o
+JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine
+JOIN Prodotti p ON do.id_prodotto = p.id_prodotto
+JOIN Categorie c ON p.id_categoria = c.id_categoria;
+
+# Mostra tutti i prodotti, anche quelli non acquistati, insieme al totale delle quantità ordinate.
+SELECT
+    p.nome_prodotto,
+    SUM(do.quanti
+    ) AS totale_quantita_ordinate
+FROM Prodotti p
+LEFT JOIN DettagliOrdine do ON p.id_prodotto = do.id_prodotto
+GROUP BY p.nome_prodotto;
