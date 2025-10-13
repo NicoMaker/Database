@@ -179,18 +179,18 @@ LEFT JOIN Prodotti p ON do.id_prodotto = p.id_prodotto;
 # Visualizza i dettagli degli ordini per categoria di prodotto.
 SELECT
     c.nome_categoria,
-    o.data_ordine,
-    o.totale
-FROM Ordini o
-JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine
-JOIN Prodotti p ON do.id_prodotto = p.id_prodotto
-JOIN Categorie c ON p.id_categoria = c.id_categoria;
+    p.nome_prodotto,
+    SUM(do.quantita) AS totale_quantita_per_prodotto
+FROM Categorie c
+JOIN Prodotti p ON c.id_categoria = p.id_categoria
+JOIN DettagliOrdine do ON p.id_prodotto = do.id_prodotto
+GROUP BY c.nome_categoria, p.nome_prodotto
+ORDER BY c.nome_categoria, p.nome_prodotto;
 
 # Mostra tutti i prodotti, anche quelli non acquistati, insieme al totale delle quantità ordinate.
 SELECT
     p.nome_prodotto,
-    SUM(do.quanti
-    ) AS totale_quantita_ordinate
+    COALESCE(SUM(do.quantita), 0) AS totale_quantita_ordinate
 FROM Prodotti p
 LEFT JOIN DettagliOrdine do ON p.id_prodotto = do.id_prodotto
 GROUP BY p.nome_prodotto;
