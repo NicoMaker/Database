@@ -83,3 +83,34 @@ SELECT
 FROM Enrollments e
 GROUP BY e.CourseID
 ORDER BY NumeroIscritti ASC;
+
+# trova i corsi con il punteggio massimo degli studenti
+SELECT 
+    (SELECT c.CourseName FROM Courses c WHERE c.CourseID = e.CourseID) AS CourseName,
+    ROUND(MAX(e.Grade), 0)  AS MaxGrade
+FROM Enrollments e
+GROUP BY e.CourseID
+ORDER BY MaxGrade DESC;
+
+# seleziona gli studenti con punteggi medi inferiori a 60
+SELECT 
+    (SELECT s.FirstName FROM Students s WHERE s.StudentID = e.StudentID) AS FirstName,
+    (SELECT s.LastName FROM Students s WHERE s.StudentID = e.StudentID) AS LastName,
+    ROUND(AVG(e.Grade), 0) AS Media
+FROM Enrollments e
+GROUP BY e.StudentID
+HAVING Media < 60;
+
+# contare il numero totale di corsi disponibili
+SELECT COUNT(*) AS NumeroCorsi
+FROM Courses;
+
+# Seleziona corsi con nomi distinti e conteggio delle iscrizioni.
+SELECT
+    (SELECT c.CourseName FROM Courses c WHERE c.CourseID = e.CourseID) AS CourseName,
+    COUNT(e.StudentID) AS NumeroIscritti
+FROM Enrollments e
+GROUP BY e.CourseID
+ORDER BY NumeroIscritti DESC;
+
+# Trova gli studenti che sono iscritti in corsi con punteggio medio superiore a 70.
