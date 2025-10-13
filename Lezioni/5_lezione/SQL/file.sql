@@ -50,3 +50,36 @@ SELECT *
 FROM Courses
 WHERE CourseName LIKE 'C%'
 ORDER BY CourseName;
+
+# contare il numero di corsi in cui ogni studente e' iscritto
+
+SELECT 
+    (SELECT s.FirstName FROM Students s WHERE s.StudentID = e.StudentID) AS FirstName,
+    (SELECT s.LastName FROM Students s WHERE s.StudentID = e.StudentID) AS LastName,
+    COUNT(e.CourseID) AS NumeroCorsi
+FROM Enrollments e
+GROUP BY e.StudentID
+ORDER BY NumeroCorsi DESC;
+
+# Selezionare gli studenti e concatenare il loro nome e cognome
+SELECT 
+    CONCAT(FirstName, ' ', LastName) AS FullName
+FROM Students;
+
+# trova gli studenti con la media dei voti superiori a 75, ordinato per media decrescente
+SELECT 
+    (SELECT s.FirstName FROM Students s WHERE s.StudentID = e.StudentID) AS FirstName,
+    (SELECT s.LastName FROM Students s WHERE s.StudentID = e.StudentID) AS LastName,
+    ROUND(AVG(e.Grade), 0) AS Media
+FROM Enrollments e
+GROUP BY e.StudentID
+HAVING Media > 75
+ORDER BY Media DESC;
+
+# selezionare corsi e il numero di studenti iscritti, ordinati per numero crescente
+SELECT 
+    (SELECT c.CourseName FROM Courses c WHERE c.CourseID = e.CourseID) AS CourseName,
+    COUNT(e.StudentID) AS NumeroIscritti
+FROM Enrollments e
+GROUP BY e.CourseID
+ORDER BY NumeroIscritti ASC;
