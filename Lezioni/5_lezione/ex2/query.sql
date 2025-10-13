@@ -103,8 +103,48 @@ CROSS JOIN Categorie ca;
 SELECT 
     c.nome_cliente,
     p.nome_prodotto,
-    op.quantita
+    do.quantita
 FROM Clienti c
 JOIN Ordini o ON c.id_cliente = o.id_cliente
-JOIN OrdiniProdotti op ON o.id_ordine = op.id_ordine
-JOIN Prodotti p ON op.id_prodotto = p.id_prodotto;
+JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine
+JOIN Prodotti p ON do.id_prodotto = p.id_prodotto;
+
+
+# Mostra tutti gli ordini e i dettagli degli ordini, inclusi quelli senza dettagli registrati. Cosa noti?
+SELECT 
+    o.id_ordine,
+    o.data_ordine,
+    do.id_prodotto,
+    o.totale,
+    do.quantita
+FROM Ordini o
+LEFT JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine;
+
+
+# Visualizza l’elenco di tutte le categorie e il numero di prodotti in ciascuna categoria. Includi anche le categorie senza prodotti.
+SELECT 
+    c.nome_categoria,
+    COUNT(p.id_prodotto) AS numero_prodotti
+FROM Categorie c
+LEFT JOIN Prodotti p ON c.id_categoria = p.id_categoria
+GROUP BY c.nome_categoria;
+
+
+# Mostra tutte le categorie che non hanno prodotti associati.
+SELECT
+    c.nome_categoria
+FROM Categorie c
+LEFT JOIN Prodotti p ON c.id_categoria = p.id_categoria
+WHERE p.id_prodotto IS NULL;
+
+
+# Trova tutti gli ordini che contengono prodotti senza una categoria associata.
+SELECT
+    o.id_ordine,
+    o.data_ordine,
+    o.totale
+    p.nome_prodotto
+FROM Ordini o
+JOIN DettagliOrdine do ON o.id_ordine = do.id_ordine
+JOIN Prodotti p ON do.id_prodotto = p.id_prodotto
+WHERE p.id_categoria IS NULL;
