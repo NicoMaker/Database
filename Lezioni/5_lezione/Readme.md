@@ -4,5 +4,5 @@
 
 ## Esercizi
 
-- [Esercizio 1](ex1)
-- [Esercizio 2](ex2)
+- [Esercizio 1](exercise/ex1)
+- [Esercizio 2](exercise/ex2)
