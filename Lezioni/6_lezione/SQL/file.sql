@@ -246,3 +246,43 @@ DELIMITER ;
 
 -- Chiama la procedura per contare gli ordini con stato 'cancelled'.
 CALL `classicmodels`.`CountByStatus`('cancelled');
+
+-- Cambia il delimitatore per la nuova procedura.
+DELIMITER $$
+/*
+ * === SPIEGAZIONE PROCEDURA: GetCustomerLevel ===
+ * Funzionamento: Questa procedura accetta un numero cliente (IN `pcustomerNumber`) e restituisce il suo livello (OUT `pCustomerLevel`).
+ * Recupera il limite di credito del cliente dalla tabella `customers`.
+ * Utilizza una struttura condizionale IF-ELSEIF-ELSE per assegnare un livello basato sul limite di credito:
+ * - 'PLATINUM' se il credito è > 50.000
+ * - 'GOLD' se il credito è tra 10.000 e 50.000
+ * - 'SILVER' in tutti gli altri casi.
+ * In questo modo, la procedura restituisce sempre un valore.
+ */
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCustomerLevel`(
+    IN pcustomerNumber INT,
+    OUT pCustomerLevel VARCHAR(20)
+)
+BEGIN
+    DECLARE credit DECIMAL(10, 2) DEFAULT 0;
+
+    -- Recupera il limite di credito per il cliente specificato.
+    SELECT creditLimit INTO credit
+    FROM customers
+    WHERE customerNumber = pcustomerNumber;
+
+    -- Assegna il livello del cliente in base al limite di credito.
+    IF credit > 50000 THEN
+        SET pCustomerLevel = 'PLATINUM';
+    ELSEIF (credit <= 50000 AND credit >= 10000) THEN
+        SET pCustomerLevel = 'GOLD';
+    ELSE
+        SET pCustomerLevel = 'SILVER';
+    END IF;
+END$$
+DELIMITER ;
+
+-- Chiama la procedura per il cliente 141 e memorizza il risultato nella variabile @level.
+CALL `classicmodels`.`GetCustomerLevel`('141',@level);
+-- Mostra il valore della variabile @level.
+SELECT @level;

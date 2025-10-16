@@ -37,6 +37,10 @@
 
 - vive e muore dentro begin
 
+## Ciclo if
+
+- in base a condizioni che devi fare fa le ozpioni se si o se no perchè if
+
 ## Comandi SQL
 
 - [file sql](SQL/file.sql)
