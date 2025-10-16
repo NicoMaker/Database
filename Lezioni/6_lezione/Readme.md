@@ -5,7 +5,12 @@
 ## Store Procedure
 
 - ambiente dove ci sono query ma paramerizzato (variabili)
+
   - istruzione condizionali con cicli
+
+- riduce traffico di rete
+  - più veloce da cercare 
+  - mando meno istruzioni mando noe e parametri che devo passare
 
 ## Comandi SQL
 
