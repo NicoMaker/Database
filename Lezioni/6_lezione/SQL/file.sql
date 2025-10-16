@@ -171,22 +171,46 @@ SELECT
 
 -- Cambia il delimitatore per definire la procedura.
 DELIMITER $ $
-    /*
-    * === SPIEGAZIONE PROCEDURA: getbycode ===
-    * Funzionamento: Questa procedura è parametrica e accetta un codice postale come parametro di input (IN `codicepostale`).
-    * Cerca nella tabella `customers` tutti i clienti che corrispondono al codice postale fornito.
-    * Restituisce il nome del cliente, il numero di telefono, la città e il codice postale.
-    */
-    -- Crea una procedura che accetta un codice postale come parametro di input.
+/*
+ * === SPIEGAZIONE PROCEDURA: getbycode ===
+ * Funzionamento: Questa procedura è parametrica e accetta un codice postale come parametro di input (IN `codicepostale`).
+ * Cerca nella tabella `customers` tutti i clienti che corrispondono al codice postale fornito.
+ * Restituisce il nome del cliente, il numero di telefono, la città e il codice postale.
+ */
+-- Crea una procedura che accetta un codice postale come parametro di input.
 CREATE PROCEDURE getbycode(IN codicepostale VARCHAR(15)) BEGIN -- Seleziona i dati dei clienti filtrando per codice postale.
 SELECT
     customername,
     phone,
     city,
     postalcode
-FROM customers
+FROM
+    customers
 WHERE
     postalcode = codicepostale;
-
 END $ $ -- Reimposta il delimitatore.
 DELIMITER;
+-- Cambia il delimitatore per la nuova procedura.
+
+DELIMITER $$
+/*
+ * === SPIEGAZIONE PROCEDURA: GetTotalOrder ===
+ * Funzionamento: Questa procedura calcola il numero totale di ordini presenti nella tabella `orders`.
+ * Dichiara una variabile locale `totalorder`, esegue un `COUNT(*)` sulla tabella `orders`
+ * e memorizza il risultato in quella variabile. Infine, restituisce il valore calcolato.
+ */
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetTotalOrder`()
+BEGIN
+    -- Dichiara una variabile locale per memorizzare il conteggio totale.
+    DECLARE totalorder INT DEFAULT 0;
+
+    -- Conta il numero totale di righe (ordini) nella tabella 'orders' e assegna il valore alla variabile.
+    SELECT COUNT(*) INTO totalorder FROM orders;
+
+    -- Seleziona la variabile per restituire il risultato del conteggio.
+    SELECT totalorder AS 'Total Orders';
+END$$
+DELIMITER ;
+
+
+CALL `classicmodels`.`GetTotalOrder`();

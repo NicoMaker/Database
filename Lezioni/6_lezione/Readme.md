@@ -28,6 +28,15 @@
 
 - ritorna valore che hai dato con chiamato con dati corretti
 
+## Variabili
+
+- parametri di input e output
+
+- in input parametri di input
+- in output parametri di output
+
+- vive e muore dentro begin
+
 ## Comandi SQL
 
 - [file sql](SQL/file.sql)
