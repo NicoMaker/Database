@@ -24,6 +24,7 @@
   - no editor che capisce dove c'è l'errore 
     - difficle fare debug 
       - mysql non da aiuto per store procedure
+- mantenimento store procedure
 
 ## Comandi SQL
 
