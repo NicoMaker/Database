@@ -24,3 +24,4 @@ BEGIN
     ORDER By
         customername;
 END $$
+DELIMITER ;
