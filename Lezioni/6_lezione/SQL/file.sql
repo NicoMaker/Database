@@ -200,12 +200,14 @@ DELIMITER $$
  * e memorizza il risultato in quella variabile. Infine, restituisce il valore calcolato.
  */
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetTotalOrder`()
+-- Inizio del blocco di codice della procedura.
 BEGIN
     -- Dichiara una variabile locale per memorizzare il conteggio totale.
     DECLARE totalorder INT DEFAULT 0;
 
     -- Conta il numero totale di righe (ordini) nella tabella 'orders' e assegna il valore alla variabile.
-    SELECT COUNT(*) INTO totalorder FROM orders;
+    SELECT COUNT(*) INTO totalorder
+    FROM orders;
 
     -- Seleziona la variabile per restituire il risultato del conteggio.
     SELECT totalorder AS 'Total Orders';
@@ -213,20 +215,34 @@ END$$
 DELIMITER ;
 
 
+-- Chiama la procedura per ottenere il numero totale di ordini.
 CALL `classicmodels`.`GetTotalOrder`();
 
-
+-- Cambia il delimitatore per la nuova procedura.
+DELIMITER $$
+/*
+ * === SPIEGAZIONE PROCEDURA: CountByStatus ===
+ * Funzionamento: Questa procedura è parametrica e accetta uno stato come input (IN `stato`).
+ * Conta il numero di ordini che corrispondono allo stato fornito (es. 'Shipped', 'Cancelled').
+ * Dichiara una variabile locale `conteggio_ordini`, esegue il conteggio con una clausola WHERE
+ * e restituisce il risultato.
+ */
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CountByStatus`(
-    IN stato VARCHAR(15)
+    IN stato VARCHAR(15) -- Parametro di input per specificare lo stato degli ordini da contare.
 )
+-- Inizio del blocco di codice della procedura.
 BEGIN
-    DECLARE conteggio_ordini INT DEFAULT 0;
+    DECLARE conteggio_ordini INT DEFAULT 0; -- Variabile locale per memorizzare il conteggio.
 
-    SELECT COUNT(*) INTO conteggio_ordini
+    -- Conta gli ordini filtrando per lo stato passato come parametro e memorizza il risultato.
+    SELECT COUNT(*) INTO conteggio_ordini 
     FROM orders
     WHERE status = stato;
 
-    SELECT conteggio_ordini AS totale_ordini;
-END
+    -- Seleziona la variabile per restituire il risultato.
+    SELECT conteggio_ordini AS totale_ordini; 
+END$$
+DELIMITER ;
 
+-- Chiama la procedura per contare gli ordini con stato 'cancelled'.
 CALL `classicmodels`.`CountByStatus`('cancelled');
