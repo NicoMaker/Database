@@ -8,9 +8,22 @@
 
   - istruzione condizionali con cicli
 
+### Vanntaggi
+
 - riduce traffico di rete
-  - più veloce da cercare 
+  - più veloce da cercare
   - mando meno istruzioni mando noe e parametri che devo passare
+
+### Svantaggi
+
+- utilizzo di risorse
+  - peso di rete
+    - tanta memoria
+- mysql non ottimizzato per cicli usa parecchia CPU
+- molti tabelshouting 
+  - no editor che capisce dove c'è l'errore 
+    - difficle fare debug 
+      - mysql non da aiuto per store procedure
 
 ## Comandi SQL
 
