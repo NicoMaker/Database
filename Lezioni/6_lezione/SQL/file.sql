@@ -29,3 +29,5 @@ DELIMITER ;
 # eliminazione procedura
 DROP PROCEDURE GetCustomers
 
+# chiamata procedura
+CALL GetCustomers();
