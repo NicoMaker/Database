@@ -214,3 +214,19 @@ DELIMITER ;
 
 
 CALL `classicmodels`.`GetTotalOrder`();
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CountByStatus`(
+    IN stato VARCHAR(15)
+)
+BEGIN
+    DECLARE conteggio_ordini INT DEFAULT 0;
+
+    SELECT COUNT(*) INTO conteggio_ordini
+    FROM orders
+    WHERE status = stato;
+
+    SELECT conteggio_ordini AS totale_ordini;
+END
+
+CALL `classicmodels`.`CountByStatus`('cancelled');
