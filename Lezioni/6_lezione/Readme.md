@@ -26,6 +26,8 @@
       - mysql non da aiuto per store procedure
 - mantenimento store procedure
 
+- ritorna valore che hai dato con chiamato con dati corretti
+
 ## Comandi SQL
 
 - [file sql](SQL/file.sql)
