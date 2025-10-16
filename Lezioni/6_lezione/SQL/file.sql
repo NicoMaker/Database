@@ -31,3 +31,25 @@ DROP PROCEDURE GetCustomers
 
 # chiamata procedura
 CALL GetCustomers();
+
+# eliminazione con if exists
+DROP PROCEDURE IF EXISTS PIPPO;
+
+SHOW warnings;
+
+DELIMITER $$
+CREATE PROCEDURE GetEmployess()
+BEGIN
+    SELECT
+        firstname,
+        lastname,
+        city,
+        state,
+        country
+    FROM
+        employees
+    INNER JOIN offices USING (officeCode);
+END $$
+DELIMITER ;
+
+CALL GetEmployess();
