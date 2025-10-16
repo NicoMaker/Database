@@ -45,7 +45,7 @@ END $ $ DELIMITER;
 
 CALL GetEmployess();
 
-DELIMITER / / CREATE PROCEDURE GetOfficeByCountry(in countryName varchar(255)) BEGIN
+DELIMITER / / CREATE PROCEDURE GetOfficeByCountry(in countryName VARCHAR(255)) BEGIN
 SELECT
     *
 FROM
@@ -76,3 +76,20 @@ DEALLOCATE PREPARE stmt;
 END / / DELIMITER;
 
 CALL GetOfficeByCountries('USA,France,Japan');
+
+DELIMITER $$ 
+CREATE PROCEDURE GetOrderByStatus(
+    in OrderStatus VARCHAR(25),
+    OUT total INT
+) BEGIN
+SELECT
+    COUNT(orderNumber) INTO total
+FROM
+    orders
+WHERE
+    status = OrderStatus;
+
+END $$ DELIMITER;
+
+CALL GetOrderByStatus('Shipped', @total);
+SELECT @total;
