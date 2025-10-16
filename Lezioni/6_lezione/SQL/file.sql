@@ -150,8 +150,15 @@ CREATE PROCEDURE GetOrderByStatus(
 END$$
 -- Reimposta il delimitatore.
 DELIMITER ;
+
 -- Chiama la procedura per contare gli ordini con stato 'Shipped'.
 -- Il risultato verrà memorizzato nella variabile di sessione @total.
 CALL GetOrderByStatus('Shipped', @total);
+-- Seleziona e visualizza il valore della variabile @total.
+SELECT @total;
+
+-- Chiama la procedura per contare gli ordini con stato 'In Process'.
+-- Il risultato verrà memorizzato nella variabile di sessione @total.
+CALL GetOrderByStatus('In Process', @total);
 -- Seleziona e visualizza il valore della variabile @total.
 SELECT @total;
