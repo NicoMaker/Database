@@ -25,3 +25,7 @@ BEGIN
         customername;
 END $$
 DELIMITER ;
+
+# eliminazione procedura
+DROP PROCEDURE GetCustomers
+
