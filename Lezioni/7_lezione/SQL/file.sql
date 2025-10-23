@@ -323,13 +323,25 @@ DELIMITER ;
 CALL `classicmodels`.`LoadCalendar`('2024-01-01', 31);
 SELECT * FROM calendars;
 
-
+-- ====================================================================================
+-- PROCEDURA: OperationCalendar
+-- OBIETTIVO: Eseguire un'operazione di "UPSERT" (INSERT o UPDATE) per una singola data
+--            nella tabella 'calendars'.
+-- FUNZIONAMENTO:
+-- 1. Accetta una data (`dt`) come parametro.
+-- 2. Controlla se la data esiste già nella tabella.
+-- 3. Se non esiste, la inserisce insieme alle sue parti estratte (giorno, mese, etc.).
+-- 4. Se esiste già, la aggiorna per garantire la coerenza dei dati.
+-- ====================================================================================
 CREATE DEFINER=`root`@`localhost` PROCEDURE `OperationCalendar`(
+    -- Parametro di input: la data da inserire o aggiornare.
     IN dt DATE
 )
 BEGIN
+    -- Controlla se non esiste già un record per la data fornita.
+    -- `SELECT 1` è un modo efficiente per verificare l'esistenza senza recuperare dati.
     IF NOT EXISTS (SELECT 1 FROM calendars WHERE fulldate = dt) THEN
-        -- La data non esiste → considerata creazione ('C')
+        -- Se la data non esiste, esegue un'operazione di INSERIMENTO.
         INSERT INTO calendars (
             fulldate,
             day,
@@ -338,47 +350,78 @@ BEGIN
             year
         )
         VALUES (
-            dt,
-            EXTRACT(DAY FROM dt),
-            EXTRACT(MONTH FROM dt),
-            EXTRACT(QUARTER FROM dt),
-            EXTRACT(YEAR FROM dt)
+            dt, -- La data completa.
+            EXTRACT(DAY FROM dt), -- Estrae il giorno dalla data.
+            EXTRACT(MONTH FROM dt), -- Estrae il mese.
+            EXTRACT(QUARTER FROM dt), -- Estrae il trimestre.
+            EXTRACT(YEAR FROM dt) -- Estrae l'anno.
         );
     ELSE
-        -- La data esiste → considerata aggiornamento ('I')
+        -- Se la data esiste già, esegue un'operazione di AGGIORNAMENTO.
+        -- Questo garantisce che i dati derivati (giorno, mese, etc.) siano sempre corretti.
         UPDATE calendars
         SET 
-            day = EXTRACT(DAY FROM dt),
-            month = EXTRACT(MONTH FROM dt),
-            quarter = EXTRACT(QUARTER FROM dt),
-            year = EXTRACT(YEAR FROM dt)
-        WHERE fulldate = dt;
+            day = EXTRACT(DAY FROM dt), -- Aggiorna il giorno.
+            month = EXTRACT(MONTH FROM dt), -- Aggiorna il mese.
+            quarter = EXTRACT(QUARTER FROM dt), -- Aggiorna il trimestre.
+            year = EXTRACT(YEAR FROM dt) -- Aggiorna l'anno.
+        WHERE fulldate = dt; -- La clausola WHERE è fondamentale per aggiornare solo il record corretto.
     END IF;
-END $ $
+END$$
 
+-- Cambia nuovamente il delimitatore per la procedura successiva.
 DELIMITER $$
 
+-- ====================================================================================
+-- PROCEDURA: Calendar
+-- OBIETTIVO: Gestire un intervallo di date nella tabella 'calendars', eseguendo
+--            operazioni di inserimento, aggiornamento o cancellazione.
+-- FUNZIONAMENTO:
+-- 1. Accetta una data di inizio, una data di fine e un carattere per l'azione.
+-- 2. Itera su ogni giorno dell'intervallo specificato.
+-- 3. Se l'azione è 'D', cancella il record per la data corrente.
+-- 4. Altrimenti, chiama la procedura `OperationCalendar` per inserire o aggiornare
+--    il record per la data corrente.
+-- ====================================================================================
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Calendar`(
-    IN startDate DATE,
-    IN endDate DATE,
-    IN action CHAR(1) -- 'D' = delete, NULL o altro = insert/update automatico
+    IN startDate DATE, -- Parametro di input: la data da cui iniziare l'operazione.
+    IN endDate DATE,   -- Parametro di input: la data in cui terminare l'operazione.
+    IN action CHAR(1)  -- Parametro di input: definisce l'azione da compiere.
+                       -- 'D' per cancellare (DELETE).
+                       -- Qualsiasi altro valore (o NULL) per inserire/aggiornare.
 )
 BEGIN
+    -- Dichiara una variabile locale per tenere traccia della data corrente nel ciclo.
     DECLARE currentDate DATE;
+    -- Inizializza la data corrente con la data di inizio fornita.
     SET currentDate = startDate;
 
+    -- Inizia un ciclo WHILE che continua finché la data corrente è minore o uguale alla data di fine.
     WHILE currentDate <= endDate DO
+        -- Controlla il valore del parametro 'action'.
         IF action = 'D' THEN
-            -- Cancella fisicamente la data
+            -- Se l'azione è 'D', cancella il record corrispondente alla data corrente.
             DELETE FROM calendars 
             WHERE fulldate = currentDate;
         ELSE
-            -- Inserimento o aggiornamento automatico con tipo deciso internamente
+            -- Se l'azione non è 'D', chiama la procedura `OperationCalendar`.
+            -- Questo eseguirà un inserimento o un aggiornamento per la data corrente.
             CALL OperationCalendar(currentDate);
         END IF;
 
+        -- Incrementa la data corrente di un giorno per passare alla prossima iterazione del ciclo.
         SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
     END WHILE;
 END $$
 
+-- Reimposta il delimitatore standard a punto e virgola.
 DELIMITER ;
+
+
+-- Esempi di chiamata della procedura `Calendar` per testare le funzionalità di inserimento/aggiornamento e cancellazione.4
+-- inserimento/aggiornamento
+CALL Calendar('2025-01-01', '2025-01-10', 'I');
+-- cancellazione
+CALL Calendar('2025-01-01', '2025-01-10', 'D');
+
+SELECT * from calendars;
