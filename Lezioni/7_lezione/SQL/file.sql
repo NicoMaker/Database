@@ -417,6 +417,34 @@ END $$
 -- Reimposta il delimitatore standard a punto e virgola.
 DELIMITER ;
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Calendar`(
+    IN startDate DATE,
+    IN endDate DATE,
+    IN action CHAR(1) -- 'D' = delete singolo, 'A' = cancella tutto, altro = insert/update automatico
+)
+BEGIN
+    DECLARE currentDate DATE;
+
+    IF action = 'A' THEN
+        -- Svuota completamente la tabella in modo efficiente. Ignora startDate e endDate.
+        TRUNCATE TABLE calendars;
+    ELSE
+        SET currentDate = startDate;
+        WHILE currentDate <= endDate DO
+            IF action = 'D' THEN
+                -- Cancella solo la data specifica
+                DELETE FROM calendars 
+                WHERE fulldate = currentDate;
+            ELSE
+                -- Inserimento o aggiornamento automatico con tipo deciso internamente
+                CALL OperationCalendar(currentDate);
+            END IF;
+
+            SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
+        END WHILE;
+    END IF;
+END
+
 
 -- Esempi di chiamata della procedura `Calendar` per testare le funzionalità di inserimento/aggiornamento e cancellazione.4
 -- inserimento/aggiornamento
