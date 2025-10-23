@@ -224,3 +224,66 @@ CREATE TABLE calendars (
     quarter TINYINT NOT NULL,                   -- Il trimestre dell'anno (da 1 a 4).
     year INT NOT NULL                           -- L'anno (es. 2024).
 );
+
+-- ====================================================================================
+-- PROCEDURA: InsertCalendar
+-- OBIETTIVO: Inserire una nuova riga nella tabella 'calendars' a partire da una data.
+-- FUNZIONAMENTO:
+-- 1. Accetta una data (`dt`) come parametro di input.
+-- 2. Utilizza la funzione EXTRACT() per derivare giorno, mese, trimestre e anno.
+-- 3. Inserisce la data completa e le sue parti calcolate nella tabella 'calendars'.
+-- ====================================================================================
+DELIMITER $$
+
+CREATE PROCEDURE `InsertCalendar`(IN dt DATE)
+BEGIN
+    INSERT INTO calendars(
+        fulldate,
+        day,
+        month,
+        quarter,
+        year
+    )
+    VALUES(
+        dt,
+        EXTRACT(DAY FROM dt),
+        EXTRACT(MONTH FROM dt),
+        EXTRACT(QUARTER FROM dt),
+        EXTRACT(YEAR FROM dt)
+    );
+END$$
+
+DELIMITER ;
+
+-- ====================================================================================
+-- PROCEDURA: LoadCalendars
+-- OBIETTIVO: Popolare la tabella 'calendars' con un intervallo di date.
+-- FUNZIONAMENTO:
+-- 1. Accetta una data di inizio (`startDate`) e una data di fine (`endDate`).
+-- 2. Utilizza un ciclo WHILE per iterare giorno per giorno dall'inizio alla fine.
+-- 3. Per ogni giorno, chiama la procedura `InsertCalendar` per inserire il record.
+--    Questo evita la duplicazione della logica di inserimento.
+-- ====================================================================================
+DELIMITER $$
+
+CREATE PROCEDURE `LoadCalendars`(
+    IN startDate DATE,
+    IN endDate DATE
+)
+BEGIN
+    DECLARE currentDate DATE DEFAULT startDate;
+
+    WHILE currentDate <= endDate DO
+        -- Chiama la procedura esistente per inserire la data corrente
+        CALL InsertCalendar(currentDate);
+        -- Incrementa la data di un giorno
+        SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+-- Esempio di chiamata per popolare il calendario per tutto il 2024
+-- CALL LoadCalendars('2024-01-01', '2024-12-31');
+
+
