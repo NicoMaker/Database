@@ -217,12 +217,17 @@ END;
 --           su base temporale senza dover estrarre le parti della data al volo.
 -- ====================================================================================
 CREATE TABLE calendars (
-    id INT AUTO_INCREMENT PRIMARY KEY,          -- ID univoco auto-incrementante per ogni record del calendario.
-    fulldate DATE UNIQUE,                       -- La data completa (es. '2024-10-26'), con vincolo di unicità.
-    day TINYINT NOT NULL,                       -- Il giorno del mese (da 1 a 31).
-    month TINYINT NOT NULL,                     -- Il mese dell'anno (da 1 a 12).
-    quarter TINYINT NOT NULL,                   -- Il trimestre dell'anno (da 1 a 4).
-    year INT NOT NULL                           -- L'anno (es. 2024).
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    -- ID univoco auto-incrementante per ogni record del calendario.
+    fulldate DATE UNIQUE,
+    -- La data completa (es. '2024-10-26'), con vincolo di unicità.
+    day TINYINT NOT NULL,
+    -- Il giorno del mese (da 1 a 31).
+    month TINYINT NOT NULL,
+    -- Il mese dell'anno (da 1 a 12).
+    quarter TINYINT NOT NULL,
+    -- Il trimestre dell'anno (da 1 a 4).
+    year INT NOT NULL -- L'anno (es. 2024).
 );
 
 -- ====================================================================================
@@ -233,57 +238,83 @@ CREATE TABLE calendars (
 -- 2. Utilizza la funzione EXTRACT() per derivare giorno, mese, trimestre e anno.
 -- 3. Inserisce la data completa e le sue parti calcolate nella tabella 'calendars'.
 -- ====================================================================================
-DELIMITER $$
-
-CREATE PROCEDURE `InsertCalendar`(IN dt DATE)
-BEGIN
-    INSERT INTO calendars(
+DELIMITER $ $ CREATE PROCEDURE `InsertCalendar`(IN dt DATE) BEGIN
+INSERT INTO
+    calendars(
         fulldate,
         day,
         month,
         quarter,
         year
     )
-    VALUES(
+VALUES
+(
         dt,
-        EXTRACT(DAY FROM dt),
-        EXTRACT(MONTH FROM dt),
-        EXTRACT(QUARTER FROM dt),
-        EXTRACT(YEAR FROM dt)
+        EXTRACT(
+            DAY
+            FROM
+                dt
+        ),
+        EXTRACT(
+            MONTH
+            FROM
+                dt
+        ),
+        EXTRACT(
+            QUARTER
+            FROM
+                dt
+        ),
+        EXTRACT(
+            YEAR
+            FROM
+                dt
+        )
     );
-END$$
 
-DELIMITER ;
+END $ $ DELIMITER;
 
--- ====================================================================================
--- PROCEDURA: LoadCalendars
--- OBIETTIVO: Popolare la tabella 'calendars' con un intervallo di date.
--- FUNZIONAMENTO:
--- 1. Accetta una data di inizio (`startDate`) e una data di fine (`endDate`).
--- 2. Utilizza un ciclo WHILE per iterare giorno per giorno dall'inizio alla fine.
--- 3. Per ogni giorno, chiama la procedura `InsertCalendar` per inserire il record.
---    Questo evita la duplicazione della logica di inserimento.
--- ====================================================================================
-DELIMITER $$
 
-CREATE PROCEDURE `LoadCalendars`(
-    IN startDate DATE,
-    IN endDate DATE
+
+
+
+-- Imposta il delimitatore di istruzioni su "$ $" invece del punto e virgola standard.
+-- Questo serve per poter usare il punto e virgola all'interno del corpo della procedura
+-- senza che il comando venga terminato prematuramente.
+END $ $ DELIMITER;
+
+-- Crea una procedura memorizzata chiamata "LoadCalendar"
+-- definita dall'utente 'root' sul server localhost.
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LoadCalendar`(
+    startDate DATE,  -- Data di inizio
+    day INT          -- Numero di giorni da elaborare
 )
 BEGIN
-    DECLARE currentDate DATE DEFAULT startDate;
 
-    WHILE currentDate <= endDate DO
-        -- Chiama la procedura esistente per inserire la data corrente
-        CALL InsertCalendar(currentDate);
+    -- Dichiara una variabile contatore inizializzata a 1
+    DECLARE counter INT DEFAULT 1;
+    
+    -- Dichiara una variabile data (dt) inizializzata alla data di partenza
+    DECLARE dt DATE DEFAULT startDate;
+
+    -- Inizia un ciclo che si ripete finché counter è minore o uguale al numero di giorni specificato
+    WHILE counter <= day DO
+
+        -- Chiama un’altra procedura chiamata "InsertCalendar" passando la data corrente (dt)
+        -- Si presume che questa procedura inserisca un record nel calendario per quella data
+        CALL InsertCalendar(dt);
+
+        -- Incrementa il contatore di 1
+        SET counter = counter + 1;
+
         -- Incrementa la data di un giorno
-        SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
+        SET dt = DATE_ADD(dt, INTERVAL 1 DAY);
+
+    -- Fine del ciclo
     END WHILE;
-END$$
 
+-- Fine del corpo della procedura
+END $ $
+
+-- Reimposta il delimitatore standard al punto e virgola
 DELIMITER ;
-
--- Esempio di chiamata per popolare il calendario per tutto il 2024
--- CALL LoadCalendars('2024-01-01', '2024-12-31');
-
-
