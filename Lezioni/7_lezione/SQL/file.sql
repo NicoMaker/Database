@@ -129,84 +129,84 @@ END $ $ DELIMITER;
 
 
 
+-- ====================================================================================
+-- PROCEDURA: GetDeliveryStatus
+-- OBIETTIVO: Calcolare e restituire lo stato di consegna di un ordine.
+-- NOTA: Questa versione assegna un messaggio specifico per i ritardi superiori a 5 giorni.
+-- ====================================================================================
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GetDeliveryStatus`(
     IN pOrderNumber INT,
     OUT pDeliveryStatus VARCHAR(100)
 )
 BEGIN
+    -- Dichiara una variabile locale per memorizzare la differenza in giorni.
+    -- Inizializzata a NULL per gestire i casi in cui la data di spedizione non è presente.
     DECLARE waitingDay INT DEFAULT NULL;
 
+    -- Calcola la differenza in giorni tra la data richiesta e la data di spedizione.
+    -- La funzione DATEDIFF(date1, date2) restituisce (date1 - date2).
+    -- Un valore > 0 indica un anticipo, un valore < 0 indica un ritardo.
     SELECT DATEDIFF(requireddate, shippeddate)
-    INTO waitingDay
+    INTO waitingDay -- Memorizza il risultato nella variabile.
     FROM orders
     WHERE ordernumber = pOrderNumber;
 
+    -- Assegna un messaggio di stato al parametro di output 'pDeliveryStatus'
+    -- utilizzando un'istruzione CASE basata sul valore di 'waitingDay'.
     SET pDeliveryStatus = CASE
+        -- Se 'waitingDay' è NULL (ordine non ancora spedito).
         WHEN waitingDay IS NULL THEN 'Nessuna informazione'
+        -- Se la spedizione è avvenuta con almeno 1 giorno di anticipo.
         WHEN waitingDay >= 1 THEN 'Consegna in tempo'
+        -- Se la spedizione è avvenuta esattamente il giorno richiesto.
         WHEN waitingDay = 0 THEN 'Consegna in orario'
+        -- Se il ritardo è di 1 giorno.
         WHEN waitingDay < 0 AND waitingDay >= -1 THEN 'Consegna in ritardo'
+        -- Se il ritardo è compreso tra 2 e 5 giorni.
         WHEN waitingDay < -1 AND waitingDay >= -5 THEN 'Consegna molto in ritardo'
-        -- Clausola ELSE per tutti gli altri casi (es. ritardo superiore a 5 giorni).
-        -- Si potrebbe specificare un messaggio come 'Consegna estremamente in ritardo'.
+        -- Per tutti gli altri casi (ritardo superiore a 5 giorni), fornisce un messaggio specifico.
         ELSE 'Consegna estremamente in ritardo'
     END;
 END$$ -- Fine della procedura.
 DELIMITER ; -- Reimposta il delimitatore a ';'.
 
--- Esempio di chiamata della procedura:
--- 1. Chiama la procedura 'GetDeliveryStatus' con il numero d'ordine 10165.
--- 2. Il risultato (lo stato della consegna) viene memorizzato nella variabile di sessione @status.
 CALL GetDeliveryStatus(10165, @status);
 
--- 3. Seleziona e visualizza il valore contenuto nella variabile @status.
 SELECT @status;
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetDeliveryStatus`(
+-- ====================================================================================
+-- PROCEDURA: GetDeliveryStatus_original (Versione Originale)
+-- OBIETTIVO: Calcolare e restituire lo stato di consegna di un ordine.
+-- NOTA: Questa versione non gestisce in modo specifico i ritardi superiori a 5 giorni.
+-- ====================================================================================
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetDeliveryStatus_original`(
     IN pOrderNumber INT,
     OUT pDeliveryStatus VARCHAR(100)
 )
 BEGIN
+    -- Dichiara una variabile locale per memorizzare la differenza in giorni.
     DECLARE waitingDay INT DEFAULT NULL;
 
     -- Calcola la differenza in giorni tra la data richiesta e quella di spedizione
     SELECT DATEDIFF(requireddate, shippeddate)
-    INTO waitingDay
+    INTO waitingDay -- Memorizza il risultato nella variabile.
     FROM orders
     WHERE ordernumber = pOrderNumber;
 
     -- Determina lo stato della consegna in base ai giorni di differenza
     SET pDeliveryStatus = CASE
+        -- Se 'waitingDay' è NULL (ordine non ancora spedito).
         WHEN waitingDay IS NULL THEN 'Nessuna informazione'
+        -- Se la spedizione è avvenuta con almeno 1 giorno di anticipo.
         WHEN waitingDay >= 1 THEN 'Consegna in tempo'
+        -- Se la spedizione è avvenuta esattamente il giorno richiesto.
         WHEN waitingDay = 0 THEN 'Consegna in orario'
+        -- Se il ritardo è di 1 giorno.
         WHEN waitingDay < 0 AND waitingDay >= -1 THEN 'Consegna in ritardo'
+        -- Se il ritardo è compreso tra 2 e 5 giorni.
         WHEN waitingDay < -1 AND waitingDay >= -5 THEN 'Consegna molto in ritardo'
-        ELSE 'Consegna estremamente in ritardo'
-    END;
-END;
-
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetDeliveryStatus`(
-    IN pOrderNumber INT,
-    OUT pDeliveryStatus VARCHAR(100)
-)
-BEGIN
-    DECLARE waitingDay INT DEFAULT NULL;
-
-    -- Calcola la differenza in giorni tra la data richiesta e quella di spedizione
-    SELECT DATEDIFF(requireddate, shippeddate)
-    INTO waitingDay
-    FROM orders
-    WHERE ordernumber = pOrderNumber;
-
-    -- Determina lo stato della consegna in base ai giorni di differenza
-    SET pDeliveryStatus = CASE
-        WHEN waitingDay IS NULL THEN 'Nessuna informazione'
-        WHEN waitingDay >= 1 THEN 'Consegna in tempo'
-        WHEN waitingDay = 0 THEN 'Consegna in orario'
-        WHEN waitingDay < 0 AND waitingDay >= -1 THEN 'Consegna in ritardo'
-        WHEN waitingDay < -1 AND waitingDay >= -5 THEN 'Consegna molto in ritardo'
+        -- Per tutti gli altri casi (es. ritardo > 5 giorni), restituisce un messaggio generico.
+        -- Questo può essere impreciso, poiché un ritardo è un'informazione, non un'assenza di essa.
         ELSE 'Nessuna informazione'
     END;
 END;
