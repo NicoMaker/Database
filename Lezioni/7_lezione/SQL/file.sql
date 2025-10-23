@@ -318,3 +318,7 @@ END $ $
 
 -- Reimposta il delimitatore standard al punto e virgola
 DELIMITER ;
+
+
+CALL `classicmodels`.`LoadCalendar`('2024-01-01', 31);
+SELECT * FROM calendars;
