@@ -451,5 +451,7 @@ END
 CALL Calendar('2025-01-01', '2025-01-10', 'I');
 -- cancellazione
 CALL Calendar('2025-01-01', '2025-01-10', 'D');
+-- cancellazione di tutti i record
+CALL Calendar(null,null,'A');
 
 SELECT * from calendars;
