@@ -322,3 +322,63 @@ DELIMITER ;
 
 CALL `classicmodels`.`LoadCalendar`('2024-01-01', 31);
 SELECT * FROM calendars;
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `OperationCalendar`(
+    IN dt DATE
+)
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM calendars WHERE fulldate = dt) THEN
+        -- La data non esiste → considerata creazione ('C')
+        INSERT INTO calendars (
+            fulldate,
+            day,
+            month,
+            quarter,
+            year
+        )
+        VALUES (
+            dt,
+            EXTRACT(DAY FROM dt),
+            EXTRACT(MONTH FROM dt),
+            EXTRACT(QUARTER FROM dt),
+            EXTRACT(YEAR FROM dt)
+        );
+    ELSE
+        -- La data esiste → considerata aggiornamento ('I')
+        UPDATE calendars
+        SET 
+            day = EXTRACT(DAY FROM dt),
+            month = EXTRACT(MONTH FROM dt),
+            quarter = EXTRACT(QUARTER FROM dt),
+            year = EXTRACT(YEAR FROM dt)
+        WHERE fulldate = dt;
+    END IF;
+END $ $
+
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Calendar`(
+    IN startDate DATE,
+    IN endDate DATE,
+    IN action CHAR(1) -- 'D' = delete, NULL o altro = insert/update automatico
+)
+BEGIN
+    DECLARE currentDate DATE;
+    SET currentDate = startDate;
+
+    WHILE currentDate <= endDate DO
+        IF action = 'D' THEN
+            -- Cancella fisicamente la data
+            DELETE FROM calendars 
+            WHERE fulldate = currentDate;
+        ELSE
+            -- Inserimento o aggiornamento automatico con tipo deciso internamente
+            CALL OperationCalendar(currentDate);
+        END IF;
+
+        SET currentDate = DATE_ADD(currentDate, INTERVAL 1 DAY);
+    END WHILE;
+END $$
+
+DELIMITER ;
