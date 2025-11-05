@@ -9,3 +9,4 @@
 - [Lezione 5](Lezioni/5_lezione/Readme.md)
 - [Lezione 6](Lezioni/6_lezione/Readme.md)
 - [Lezione 7](Lezioni/7_lezione/Readme.md)
+- [Lezione 8](Lezioni/8_lezione/Readme.md)
