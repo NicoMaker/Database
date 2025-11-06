@@ -232,8 +232,6 @@ SELECT
 -- ESERCIZIO 8: Costruire un trigger verifica che il valore Amount in Orders sia positivo prima di inserire un nuovo ordine.
 -- ============================================
 
--- Se il trigger esiste già, lo eliminiamo per sicurezza
-DROP TRIGGER IF EXISTS CheckPositiveAmount;
 
 DELIMITER $$
 
@@ -271,3 +269,41 @@ SHOW TRIGGERS FROM CustomerOrders;
 
 -- ✅ Verifica il contenuto della tabella Orders dopo i test
 SELECT * FROM Orders;
+
+
+-- ============================================
+-- ESERCIZIO 9: Trigger per inserire un messaggio di log quando viene creato un nuovo ordine
+-- ============================================
+
+DELIMITER $$
+
+CREATE TRIGGER LogNewOrder
+AFTER INSERT ON Orders
+FOR EACH ROW
+BEGIN
+    -- Inserisce un messaggio di log nella tabella OrderLogs
+    INSERT INTO OrderLogs (OrderID, LogMessage)
+    VALUES (
+        NEW.OrderID,
+        CONCAT('Nuovo ordine creato per il cliente ', NEW.CustomerID, 
+               ' con importo €', NEW.Amount, 
+               ' in data ', NEW.OrderDate)
+    );
+END $$
+
+DELIMITER ;
+
+-- ============================================
+-- ESEMPI DI UTILIZZO DEL TRIGGER
+-- ============================================
+
+-- ✅ Inserisci un nuovo ordine (il trigger aggiungerà automaticamente una riga in OrderLogs)
+INSERT INTO Orders (CustomerID, OrderDate, Amount)
+VALUES (1, '2025-11-06', 250.75);
+
+-- ✅ Controlla i log generati automaticamente
+SELECT * FROM OrderLogs ORDER BY LogID DESC;
+
+-- ✅ Controlla che il trigger esista
+SHOW TRIGGERS FROM CustomerOrders;
+
