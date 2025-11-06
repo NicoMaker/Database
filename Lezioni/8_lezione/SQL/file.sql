@@ -9,8 +9,7 @@ CREATE FUNCTION CustomerLevel (
     -- Parametro di input: il limite di credito del cliente.
     credit DECIMAL(10, 2)
 ) RETURNS VARCHAR(20) -- Specifica che la funzione restituirà una stringa di massimo 20 caratteri.
-DETERMINISTIC BEGIN
--- Dichiara una variabile locale per memorizzare il livello del cliente calcolato.
+DETERMINISTIC BEGIN -- Dichiara una variabile locale per memorizzare il livello del cliente calcolato.
 DECLARE customerlevel VARCHAR(20);
 
 -- Inizia una struttura condizionale per determinare il livello.
@@ -37,35 +36,33 @@ END IF;
 -- Restituisce il valore della variabile 'customerlevel'.
 RETURN customerlevel;
 
-END
-
-
--- Seleziona il nome di ogni cliente e calcola il suo livello chiamando la funzione CustomerLevel.
+END -- Seleziona il nome di ogni cliente e calcola il suo livello chiamando la funzione CustomerLevel.
 SELECT
-    customerName, -- Seleziona la colonna 'customerName'.
+    customerName,
+    -- Seleziona la colonna 'customerName'.
     CustomerLevel (creditLimit) -- Chiama la funzione 'CustomerLevel' per ogni riga, passando il valore della colonna 'creditLimit'.
     -- Il risultato della funzione verrà mostrato in una seconda colonna.
 FROM
     customers -- Specifica che i dati devono essere letti dalla tabella 'customers'.
 ORDER BY
-    customerName; -- Ordina i risultati in ordine alfabetico basandosi sul nome del cliente.
+    customerName;
 
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCustomerLevel2`(
+-- Ordina i risultati in ordine alfabetico basandosi sul nome del cliente.
+CREATE DEFINER = `root` @`localhost` PROCEDURE `GetCustomerLevel2`(
     IN p_customerNumber INT,
     OUT p_customerLevel VARCHAR(20)
-)
-BEGIN
-    SELECT CustomerLevel(creditLimit)
-    INTO p_customerLevel
-    FROM customers
-    WHERE customers.customerNumber = p_customerNumber;
-END$$
+) BEGIN
+SELECT
+    CustomerLevel(creditLimit) INTO p_customerLevel
+FROM
+    customers
+WHERE
+    customers.customerNumber = p_customerNumber;
 
-DELIMITER $$
+END $ $ DELIMITER $ $ CALL GetCustomerLevel2(103, @level);
 
-CALL GetCustomerLevel2(103, @level);
-SELECT @level;
+SELECT
+    @level;
 
 -- ====================================================================================
 -- PROCEDURA: GetAllCustomerLevels
@@ -75,18 +72,19 @@ SELECT @level;
 -- 2. Utilizza la funzione `CustomerLevel` per calcolare il livello in base al `creditLimit`.
 -- 3. Restituisce un set di risultati (una tabella) con tutti i clienti e i loro livelli.
 -- ====================================================================================
-CREATE PROCEDURE `GetAllCustomerLevels`()
-BEGIN
-    SELECT customerNumber, customerName, CustomerLevel(creditLimit) AS customerLevel
-    FROM customers
-    ORDER BY customerName;
-END$$
+CREATE PROCEDURE `GetAllCustomerLevels`() BEGIN
+SELECT
+    customerNumber,
+    customerName,
+    CustomerLevel(creditLimit) AS customerLevel
+FROM
+    customers
+ORDER BY
+    customerName;
 
-DELIMITER ;
-
+END $ $ DELIMITER;
 
 CALL GetAllCustomerLevels();
-
 
 CREATE TABLE employees_audit (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -95,3 +93,16 @@ CREATE TABLE employees_audit (
     changedat DATETIME DEFAULT NULL,
     action VARCHAR(50) DEFAULT NULL
 );
+
+CREATE DEFINER = `root` @`localhost` TRIGGER `employees_BEFORE_UPDATE` BEFORE
+UPDATE
+    ON `employees` FOR EACH ROW
+INSERT INTO
+    employees_audit
+SET
+    action = 'update',
+    employeeNumber = OLD.employeeNumber,
+    lastname = OLD.lastname,
+    changedat = NOW();
+
+show triggers; 
