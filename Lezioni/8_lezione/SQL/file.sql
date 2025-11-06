@@ -107,11 +107,15 @@ SET
 
 show triggers;
 
+CREATE DEFINER = CURRENT_USER TRIGGER `classicmodels`.`employees_audit_BEFORE_UPDATE` BEFORE UPDATE ON `employees_audit` FOR EACH ROW
+BEGIN
 UPDATE
     employees
 SET
     lastname = 'Phan'
 WHERE
     employeeNumber = 1056;
+END
+
 
 Select * from employees_audit;
