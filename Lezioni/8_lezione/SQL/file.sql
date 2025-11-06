@@ -131,10 +131,25 @@ create table members(
     PRIMARY KEY (id)
 );
 
-
 create table reminders(
     id INT AUTO_INCREMENT,
     memberId INT,
     message VARCHAR(255) NOT NULL,
-    PRIMARY KEY(id,memberid)
+    PRIMARY KEY(id, memberid)
 );
+
+CREATE DEFINER = `root` @`localhost` TRIGGER `members_AFTER_INSERT`
+AFTER
+INSERT
+    ON `members` FOR EACH ROW BEGIN if NEW.birthdate is null then
+insert into
+    reminders(memberid, message)
+values
+(
+        new.id,
+        CONCAT('Hi ', new.name, ' please update the name')
+    );
+
+end if;
+
+END
