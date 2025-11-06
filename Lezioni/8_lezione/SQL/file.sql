@@ -147,7 +147,11 @@ insert into
 values
 (
         new.id,
-        CONCAT('Hi ', new.name, ' please update the name')
+        CONCAT(
+            'Hi ',
+            new.name,
+            ' please update you date of birth'
+        )
     );
 
 end if;
