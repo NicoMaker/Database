@@ -105,4 +105,13 @@ SET
     lastname = OLD.lastname,
     changedat = NOW();
 
-show triggers; 
+show triggers;
+
+UPDATE
+    employees
+SET
+    lastname = 'Phan'
+WHERE
+    employeeNumber = 1056;
+
+Select * from employees_audit;
