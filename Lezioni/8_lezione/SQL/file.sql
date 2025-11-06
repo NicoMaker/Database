@@ -122,3 +122,11 @@ Select
     *
 from
     employees_audit;
+
+create table members(
+    id int AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(255),
+    birthdate DATE,
+    PRIMARY KEY (id)
+);
