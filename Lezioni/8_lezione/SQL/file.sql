@@ -18,6 +18,6 @@ SET
 
 END IF;
 
-RETURN 1;
+RETURN customerlevel;
 
 END
