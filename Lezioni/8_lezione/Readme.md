@@ -1,6 +1,6 @@
 [Vai al File principale](../../Readme.md)
 
-#  8ª Lezione — 06 Novembre 2025
+#  8 Lezione — 06 Novembre 2025
 
 ##  Trigger in MySQL
 
