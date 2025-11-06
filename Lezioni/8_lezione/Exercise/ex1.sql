@@ -121,3 +121,5 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+# ESERCIZIO 4: Funzione per ottenere il totale medio degli ordini di un clienteQuesta funzione accetta un CustomerID e restituisce il valore medio degli ordini per quel cliente.
