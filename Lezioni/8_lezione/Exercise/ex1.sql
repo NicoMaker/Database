@@ -307,3 +307,46 @@ SELECT * FROM OrderLogs ORDER BY LogID DESC;
 -- ✅ Controlla che il trigger esista
 SHOW TRIGGERS FROM CustomerOrders;
 
+-- ============================================
+-- ESERCIZIO 10: Trigger che impedisce l'eliminazione di un cliente con ordini esistenti
+-- ============================================
+
+DELIMITER $$
+
+CREATE TRIGGER PreventCustomerDeletionWithOrders
+BEFORE DELETE ON Customers
+FOR EACH ROW
+BEGIN
+    DECLARE orderCount INT;
+
+    -- Conta il numero di ordini associati al cliente che si vuole eliminare
+    SELECT COUNT(*) INTO orderCount
+    FROM Orders
+    WHERE CustomerID = OLD.CustomerID;
+
+    -- Se esistono ordini, blocca l'eliminazione
+    IF orderCount > 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'ERRORE: Impossibile eliminare il cliente perché esistono ancora ordini associati.';
+    END IF;
+END $$
+
+DELIMITER ;
+
+-- ============================================
+-- ESEMPI DI UTILIZZO DEL TRIGGER
+-- ============================================
+
+-- ✅ Verifica la lista clienti e ordini attuali
+SELECT * FROM Customers;
+SELECT * FROM Orders;
+
+-- ❌ Tentativo di eliminare un cliente con ordini → genera errore
+DELETE FROM Customers WHERE CustomerID = 1;
+
+-- ✅ Tentativo di eliminare un cliente senza ordini → riuscirà
+-- (prima rimuovi eventuali ordini associati, poi elimina il cliente)
+DELETE FROM Customers WHERE CustomerID = 2;
+
+-- ✅ Controlla che il trigger esista
+SHOW TRIGGERS FROM CustomerOrders;
