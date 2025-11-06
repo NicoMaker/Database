@@ -64,6 +64,9 @@ END$$
 
 DELIMITER $$
 
+CALL GetCustomerLevel2(103, @level);
+SELECT @level;
+
 -- ====================================================================================
 -- PROCEDURA: GetAllCustomerLevels
 -- OBIETTIVO: Restituire un elenco di TUTTI i clienti con il loro rispettivo livello.
@@ -80,3 +83,6 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
+CALL GetAllCustomerLevels();
