@@ -123,3 +123,20 @@ END$$
 DELIMITER ;
 
 # ESERCIZIO 4: Funzione per ottenere il totale medio degli ordini di un clienteQuesta funzione accetta un CustomerID e restituisce il valore medio degli ordini per quel cliente.
+DELIMITER //
+
+CREATE FUNCTION GetAverageOrderTotal(CustomerIDInput INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE avgTotal DECIMAL(10,2);
+
+    SELECT AVG(Amount)
+    INTO avgTotal
+    FROM Orders
+    WHERE CustomerID = CustomerIDInput;
+
+    RETURN IFNULL(avgTotal, 0.00);
+END //
+
+DELIMITER ;
