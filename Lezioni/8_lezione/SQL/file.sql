@@ -157,3 +157,13 @@ values
 end if;
 
 END
+
+INSERT INTO members (name, email, birthdate) VALUES
+('Luca Rossi', 'luca.rossi@example.com', '1995-03-12'),
+('Maria Bianchi', 'maria.bianchi@example.com', '1988-07-25'),
+('Giovanni Verdi', NULL, '1992-11-05'),
+('Elena Neri', 'elena.neri@example.com', '2000-01-20'),
+('Carlo Gialli', NULL, '1985-09-14'),
+('Francesca Blu', 'francesca.blu@example.com', '1999-06-03'),
+('Marco Argento', NULL, '1997-02-28'),
+('Chiara Viola', 'chiara.viola@example.com', '1993-12-10');
