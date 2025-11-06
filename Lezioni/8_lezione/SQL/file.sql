@@ -60,4 +60,23 @@ BEGIN
     INTO p_customerLevel
     FROM customers
     WHERE customers.customerNumber = p_customerNumber;
-END
+END$$
+
+DELIMITER $$
+
+-- ====================================================================================
+-- PROCEDURA: GetAllCustomerLevels
+-- OBIETTIVO: Restituire un elenco di TUTTI i clienti con il loro rispettivo livello.
+-- FUNZIONAMENTO:
+-- 1. Seleziona l'ID, il nome e il livello di ogni cliente.
+-- 2. Utilizza la funzione `CustomerLevel` per calcolare il livello in base al `creditLimit`.
+-- 3. Restituisce un set di risultati (una tabella) con tutti i clienti e i loro livelli.
+-- ====================================================================================
+CREATE PROCEDURE `GetAllCustomerLevels`()
+BEGIN
+    SELECT customerNumber, customerName, CustomerLevel(creditLimit) AS customerLevel
+    FROM customers
+    ORDER BY customerName;
+END$$
+
+DELIMITER ;
