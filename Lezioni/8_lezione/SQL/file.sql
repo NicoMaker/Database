@@ -38,10 +38,14 @@ END IF;
 RETURN customerlevel;
 
 END
+
+
+-- Seleziona il nome di ogni cliente e calcola il suo livello chiamando la funzione CustomerLevel.
 SELECT
-    customerName,
-    CustomerLevel (creditLimit)
+    customerName, -- Seleziona la colonna 'customerName'.
+    CustomerLevel (creditLimit) -- Chiama la funzione 'CustomerLevel' per ogni riga, passando il valore della colonna 'creditLimit'.
+    -- Il risultato della funzione verrà mostrato in una seconda colonna.
 FROM
-    customers
+    customers -- Specifica che i dati devono essere letti dalla tabella 'customers'.
 ORDER BY
-    customerName;
+    customerName; -- Ordina i risultati in ordine alfabetico basandosi sul nome del cliente.
