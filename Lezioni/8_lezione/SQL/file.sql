@@ -49,3 +49,15 @@ FROM
     customers -- Specifica che i dati devono essere letti dalla tabella 'customers'.
 ORDER BY
     customerName; -- Ordina i risultati in ordine alfabetico basandosi sul nome del cliente.
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetCustomerLevel2`(
+    IN p_customerNumber INT,
+    OUT p_customerLevel VARCHAR(20)
+)
+BEGIN
+    SELECT CustomerLevel(creditLimit)
+    INTO p_customerLevel
+    FROM customers
+    WHERE customers.customerNumber = p_customerNumber;
+END
