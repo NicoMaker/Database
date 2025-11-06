@@ -130,3 +130,11 @@ create table members(
     birthdate DATE,
     PRIMARY KEY (id)
 );
+
+
+create table reminders(
+    id INT AUTO_INCREMENT,
+    memberId INT,
+    message VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id,memberid)
+);
