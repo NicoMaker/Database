@@ -43,110 +43,140 @@ VALUES
     (3, '2023-04-05', 300.00),
     (2, '2023-05-12', 450.25);
 
-# ESERCIZIO 1: Stored Function per calcolare il totale degli ordini di un cliente
-DELIMITER $ $ CREATE FUNCTION GetCustomerTotalOrders(p_CustomerID INT) RETURNS DECIMAL(10, 2) DETERMINISTIC BEGIN DECLARE total DECIMAL(10, 2);
+-- ============================================
+-- ESERCIZIO 1: Funzione per calcolare il totale ordini di un cliente
+-- ============================================
 
-SELECT
-    IFNULL(SUM(Amount), 0) INTO total
-FROM
-    Orders
-WHERE
-    CustomerID = p_CustomerID;
+DELIMITER $$
+CREATE FUNCTION GetCustomerTotalOrders(p_CustomerID INT)
+RETURNS DECIMAL(10, 2)
+DETERMINISTIC
+BEGIN
+    DECLARE total DECIMAL(10, 2);
 
-RETURN total;
+    SELECT IFNULL(SUM(Amount), 0)
+    INTO total
+    FROM Orders
+    WHERE CustomerID = p_CustomerID;
 
-END $ $ DELIMITER;
+    RETURN total;
+END $$
+DELIMITER ;
 
-# ESERCIZIO 2: Stored Procedure per elencare tutti gli ordini di un clienteQuesta procedura accetta un CustomerID come parametro e mostra tutti gli ordini di quel cliente.
-DELIMITER $ $ CREATE PROCEDURE GetCustomerOrders(IN p_CustomerID INT) BEGIN
-SELECT
-    o.OrderID,
-    c.CustomerName,
-    o.OrderDate,
-    o.Amount
-FROM
-    Orders o
-    INNER JOIN Customers c ON o.CustomerID = c.CustomerID
-WHERE
-    o.CustomerID = p_CustomerID
-ORDER BY
-    o.OrderDate ASC;
+-- ESEMPIO DI UTILIZZO
+SELECT GetCustomerTotalOrders(1) AS TotaleOrdiniCliente1;
 
-END $ $ DELIMITER;
+-- ============================================
+-- ESERCIZIO 2: Procedura per elencare tutti gli ordini di un cliente
+-- ============================================
 
-# ESERCIZIO 3 : Stored Procedure per aggiungere un nuovo ordine e calcolare il totale aggiornatoQuesta procedura accetta CustomerID, OrderDate e Amount come parametri, inserisce un nuovo ordine e restituisce il totale aggiornato degli ordini per quel cliente.
-DELIMITER $ $ CREATE PROCEDURE AddNewOrder(
+DELIMITER $$
+CREATE PROCEDURE GetCustomerOrders(IN p_CustomerID INT)
+BEGIN
+    SELECT
+        o.OrderID,
+        c.CustomerName,
+        o.OrderDate,
+        o.Amount
+    FROM
+        Orders o
+        INNER JOIN Customers c ON o.CustomerID = c.CustomerID
+    WHERE
+        o.CustomerID = p_CustomerID
+    ORDER BY
+        o.OrderDate ASC;
+END $$
+DELIMITER ;
+
+-- ESEMPIO DI UTILIZZO
+CALL GetCustomerOrders(1);
+
+-- ============================================
+-- ESERCIZIO 3: Procedura per aggiungere un nuovo ordine e mostrare il totale aggiornato
+-- ============================================
+
+DELIMITER $$
+CREATE PROCEDURE AddNewOrder(
     IN p_CustomerID INT,
     IN p_OrderDate DATE,
     IN p_Amount DECIMAL(10, 2)
-) BEGIN DECLARE v_NewOrderID INT;
+)
+BEGIN
+    DECLARE v_NewOrderID INT;
+    DECLARE v_Total DECIMAL(10, 2);
 
-DECLARE v_Total DECIMAL(10, 2);
+    -- Inserisce il nuovo ordine
+    INSERT INTO Orders (CustomerID, OrderDate, Amount)
+    VALUES (p_CustomerID, p_OrderDate, p_Amount);
 
--- Inserisce il nuovo ordine
-INSERT INTO
-    Orders (CustomerID, OrderDate, Amount)
-VALUES
-    (p_CustomerID, p_OrderDate, p_Amount);
+    -- Recupera l'ID dell'ordine appena inserito
+    SET v_NewOrderID = LAST_INSERT_ID();
 
--- Recupera l'ID dell'ordine appena inserito
-SET
-    v_NewOrderID = LAST_INSERT_ID();
+    -- Calcola il totale aggiornato
+    SET v_Total = GetCustomerTotalOrders(p_CustomerID);
 
--- Calcola il totale aggiornato usando la funzione creata in precedenza
-SET
-    v_Total = GetCustomerTotalOrders(p_CustomerID);
-
--- Inserisce un log informativo
-INSERT INTO
-    OrderLogs (OrderID, LogMessage)
-VALUES
-    (
+    -- Inserisce un log informativo
+    INSERT INTO OrderLogs (OrderID, LogMessage)
+    VALUES (
         v_NewOrderID,
-        CONCAT(
-            'Nuovo ordine aggiunto per il cliente ',
-            p_CustomerID,
-            '. Totale aggiornato: €',
-            v_Total
-        )
+        CONCAT('Nuovo ordine aggiunto per il cliente ', p_CustomerID, '. Totale aggiornato: €', v_Total)
     );
 
--- Mostra il totale aggiornato
-SELECT
-    v_Total AS TotaleAggiornato;
+    -- Mostra il totale aggiornato
+    SELECT v_Total AS TotaleAggiornato;
+END $$
+DELIMITER ;
 
-END $ $ DELIMITER;
+-- ESEMPIO DI UTILIZZO
+CALL AddNewOrder(1, '2025-11-06', 150.75);
 
-# ESERCIZIO 4: Funzione per ottenere il totale medio degli ordini di un clienteQuesta funzione accetta un CustomerID e restituisce il valore medio degli ordini per quel cliente.
-DELIMITER / / CREATE FUNCTION GetAverageOrderTotal(CustomerIDInput INT) RETURNS DECIMAL(10, 2) DETERMINISTIC BEGIN DECLARE avgTotal DECIMAL(10, 2);
+-- ============================================
+-- ESERCIZIO 4: Funzione per ottenere il totale medio degli ordini di un cliente
+-- ============================================
 
-SELECT
-    AVG(Amount) INTO avgTotal
-FROM
-    Orders
-WHERE
-    CustomerID = CustomerIDInput;
+DELIMITER $$
+CREATE FUNCTION GetAverageOrderTotal(CustomerIDInput INT)
+RETURNS DECIMAL(10, 2)
+DETERMINISTIC
+BEGIN
+    DECLARE avgTotal DECIMAL(10, 2);
 
-RETURN IFNULL(avgTotal, 0.00);
+    SELECT AVG(Amount)
+    INTO avgTotal
+    FROM Orders
+    WHERE CustomerID = CustomerIDInput;
 
-END / / DELIMITER;
+    RETURN IFNULL(avgTotal, 0.00);
+END $$
+DELIMITER ;
 
-# ESERCIZIO 5: Procedura per aggiungere un nuovo clienteQuesta procedura accetta il nome del cliente, l'email e la data di iscrizione e aggiunge un nuovo record alla tabella Customers.
-DELIMITER / / CREATE PROCEDURE AddNewCustomer(
+-- ESEMPIO DI UTILIZZO
+SELECT GetAverageOrderTotal(1) AS MediaOrdiniCliente1;
+
+-- ============================================
+-- ESERCIZIO 5: Procedura per aggiungere un nuovo cliente
+-- ============================================
+
+DELIMITER $$
+CREATE PROCEDURE AddNewCustomer(
     IN p_CustomerName VARCHAR(100),
     IN p_Email VARCHAR(100),
     IN p_JoinDate DATE
-) BEGIN
-INSERT INTO
-    Customers (CustomerName, Email, JoinDate)
-VALUES
-    (p_CustomerName, p_Email, p_JoinDate);
+)
+BEGIN
+    INSERT INTO Customers (CustomerName, Email, JoinDate)
+    VALUES (p_CustomerName, p_Email, p_JoinDate);
+END $$
+DELIMITER ;
 
-END / / DELIMITER;
+-- ESEMPIO DI UTILIZZO
+CALL AddNewCustomer('Mario Rossi', 'mario.rossi@example.com', '2025-11-06');
 
-# ESERCIZIO 6: Procedura per aggiornare l'email di un clienteQuesta procedura accetta un CustomerID e un nuovo indirizzo email per aggiornare l'indirizzo email del cliente.
-DELIMITER //
+-- ============================================
+-- ESERCIZIO 6: Procedura per aggiornare l'email di un cliente
+-- ============================================
 
+DELIMITER $$
 CREATE PROCEDURE UpdateCustomerEmail(
     IN p_CustomerID INT,
     IN p_NewEmail VARCHAR(100)
@@ -155,13 +185,17 @@ BEGIN
     UPDATE Customers
     SET Email = p_NewEmail
     WHERE CustomerID = p_CustomerID;
-END //
-
+END $$
 DELIMITER ;
 
-# ESERCIZIO 7: Procedura per eliminare tutti gli ordini di un cliente e calcolare il totale degli ordini eliminatiQuesta procedura elimina tutti gli ordini di un cliente specificato e restituisce il totale dell'importo degli ordini eliminati.
-DELIMITER //
+-- ESEMPIO DI UTILIZZO
+CALL UpdateCustomerEmail(1, 'nuovo.indirizzo@example.com');
 
+-- ============================================
+-- ESERCIZIO 7: Procedura per eliminare tutti gli ordini di un cliente e restituire il totale eliminato
+-- ============================================
+
+DELIMITER $$
 CREATE PROCEDURE DeleteCustomerOrders(
     IN p_CustomerID INT,
     OUT p_TotalDeleted DECIMAL(10,2)
@@ -181,6 +215,9 @@ BEGIN
 
     -- Restituisce il totale eliminato
     SET p_TotalDeleted = totalAmount;
-END //
-
+END $$
 DELIMITER ;
+
+-- ESEMPIO DI UTILIZZO
+CALL DeleteCustomerOrders(1, @TotaleEliminato);
+SELECT @TotaleEliminato AS TotaleOrdiniEliminati;
