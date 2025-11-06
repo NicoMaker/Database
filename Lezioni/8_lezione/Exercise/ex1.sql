@@ -143,3 +143,44 @@ VALUES
     (p_CustomerName, p_Email, p_JoinDate);
 
 END / / DELIMITER;
+
+# ESERCIZIO 6: Procedura per aggiornare l'email di un clienteQuesta procedura accetta un CustomerID e un nuovo indirizzo email per aggiornare l'indirizzo email del cliente.
+DELIMITER //
+
+CREATE PROCEDURE UpdateCustomerEmail(
+    IN p_CustomerID INT,
+    IN p_NewEmail VARCHAR(100)
+)
+BEGIN
+    UPDATE Customers
+    SET Email = p_NewEmail
+    WHERE CustomerID = p_CustomerID;
+END //
+
+DELIMITER ;
+
+# ESERCIZIO 7: Procedura per eliminare tutti gli ordini di un cliente e calcolare il totale degli ordini eliminatiQuesta procedura elimina tutti gli ordini di un cliente specificato e restituisce il totale dell'importo degli ordini eliminati.
+DELIMITER //
+
+CREATE PROCEDURE DeleteCustomerOrders(
+    IN p_CustomerID INT,
+    OUT p_TotalDeleted DECIMAL(10,2)
+)
+BEGIN
+    DECLARE totalAmount DECIMAL(10,2);
+
+    -- Calcola il totale degli ordini del cliente
+    SELECT IFNULL(SUM(Amount), 0)
+    INTO totalAmount
+    FROM Orders
+    WHERE CustomerID = p_CustomerID;
+
+    -- Elimina gli ordini del cliente
+    DELETE FROM Orders
+    WHERE CustomerID = p_CustomerID;
+
+    -- Restituisce il totale eliminato
+    SET p_TotalDeleted = totalAmount;
+END //
+
+DELIMITER ;
