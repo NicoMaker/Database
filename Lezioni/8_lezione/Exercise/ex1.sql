@@ -231,3 +231,43 @@ SELECT
 -- ============================================
 -- ESERCIZIO 8: Costruire un trigger verifica che il valore Amount in Orders sia positivo prima di inserire un nuovo ordine.
 -- ============================================
+
+-- Se il trigger esiste già, lo eliminiamo per sicurezza
+DROP TRIGGER IF EXISTS CheckPositiveAmount;
+
+DELIMITER $$
+
+CREATE TRIGGER CheckPositiveAmount
+BEFORE INSERT ON Orders
+FOR EACH ROW
+BEGIN
+    -- Controlla che l'importo sia maggiore di zero
+    IF NEW.Amount <= 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'ERRORE: L\'importo dell\'ordine deve essere positivo.';
+    END IF;
+END $$
+
+DELIMITER ;
+
+-- ============================================
+-- ESEMPI DI UTILIZZO DEL TRIGGER
+-- ============================================
+
+-- ✅ Caso valido: inserimento con importo positivo
+INSERT INTO Orders (CustomerID, OrderDate, Amount)
+VALUES (1, '2025-11-06', 120.50);
+
+-- ❌ Caso non valido: inserimento con importo negativo (genera errore)
+INSERT INTO Orders (CustomerID, OrderDate, Amount)
+VALUES (1, '2025-11-06', -45.00);
+
+-- ❌ Caso non valido: inserimento con importo pari a zero (genera errore)
+INSERT INTO Orders (CustomerID, OrderDate, Amount)
+VALUES (1, '2025-11-06', 0);
+
+-- ✅ Controlla che il trigger esista
+SHOW TRIGGERS FROM CustomerOrders;
+
+-- ✅ Verifica il contenuto della tabella Orders dopo i test
+SELECT * FROM Orders;
