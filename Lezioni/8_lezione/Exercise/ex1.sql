@@ -350,3 +350,84 @@ DELETE FROM Customers WHERE CustomerID = 2;
 
 -- ✅ Controlla che il trigger esista
 SHOW TRIGGERS FROM CustomerOrders;
+
+
+-- ============================================
+-- ESERCIZIO 11: Trigger per registrare un messaggio di log ogni volta che un ordine viene eliminato
+-- ============================================
+
+DELIMITER $$
+
+CREATE TRIGGER LogOrderDeletion
+AFTER DELETE ON Orders
+FOR EACH ROW
+BEGIN
+    -- Inserisce un messaggio di log nella tabella OrderLogs
+    INSERT INTO OrderLogs (OrderID, LogMessage)
+    VALUES (
+        OLD.OrderID,
+        CONCAT('Ordine con ID ', OLD.OrderID, 
+               ' è stato eliminato. Importo: €', OLD.Amount, 
+               ' per il cliente ', OLD.CustomerID)
+    );
+END $$
+
+DELIMITER ;
+
+-- ============================================
+-- ESEMPI DI UTILIZZO DEL TRIGGER
+-- ============================================
+
+-- ✅ Inserisci un ordine (per testare l'eliminazione successiva)
+INSERT INTO Orders (CustomerID, OrderDate, Amount)
+VALUES (1, '2025-11-06', 150.50);
+
+-- ✅ Verifica i dati correnti nelle tabelle
+SELECT * FROM Orders;
+SELECT * FROM OrderLogs;
+
+-- ✅ Elimina un ordine (il trigger inserirà automaticamente una voce nel log)
+DELETE FROM Orders WHERE OrderID = 1;
+
+-- ✅ Controlla i log generati automaticamente
+SELECT * FROM OrderLogs ORDER BY LogID DESC;
+
+-- ✅ Controlla che il trigger esista
+SHOW TRIGGERS FROM CustomerOrders;
+
+
+-- ============================================
+-- ESERCIZIO 12: Trigger per impedire un aggiornamento con un valore negativo per Amount
+-- ============================================
+
+
+DELIMITER $$
+CREATE TRIGGER PreventNegativeAmountUpdate
+BEFORE UPDATE ON Orders
+FOR EACH ROW
+BEGIN
+    IF NEW.Amount < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'ERRORE: Impossibile aggiornare l\'ordine. L\'importo non può essere negativo.';
+    END IF;
+END $$
+
+DELIMITER ;
+
+-- ============================================
+-- ESEMPI DI UTILIZZO DEL TRIGGER
+-- ============================================
+
+-- ✅ Verifica gli ordini attuali
+SELECT * FROM Orders;
+
+-- ✅ Tentativo di aggiornamento con un valore negativo (verrà bloccato)
+UPDATE Orders
+SET Amount = -50.00
+WHERE OrderID = 1;
+
+-- ✅ Verifica che l'ordine non è stato aggiornato (il valore di Amount rimane invariato)
+SELECT * FROM Orders WHERE OrderID = 1;
+
+-- ✅ Controlla che il trigger esista
+SHOW TRIGGERS FROM CustomerOrders;
