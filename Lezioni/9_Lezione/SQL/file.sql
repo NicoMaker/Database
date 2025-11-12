@@ -21,3 +21,6 @@ ALTER TABLE subjects MODIFY COLUMN title VARCHAR(50) UNIQUE;
 
 alter table teachers
 add column subjectid INT(11) NOT NULL DEFAULT(1);
+
+ALTER TABLE teachers
+ADD CONSTRAINT fk_subjectid FOREIGN KEY (subjectid) REFERENCES subjects (subjectid);
