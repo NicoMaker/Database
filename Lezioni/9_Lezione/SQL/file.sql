@@ -49,3 +49,9 @@ GRANT SELECT, CREATE ON school.* TO 'maker' @'localhost';
 
 -- Assegna all'utente 'authorized' gli stessi permessi (SELECT, CREATE) su tutte le tabelle del database 'school'
 GRANT SELECT, CREATE ON school.* TO 'authorized' @'localhost';
+
+-- Revoca i permessi di lettura (SELECT) e creazione (CREATE) all'utente 'maker' sul database 'school'
+REVOKE SELECT, CREATE ON school.* FROM 'maker' @'localhost';
+
+-- Revoca i permessi di lettura (SELECT) e creazione (CREATE) all'utente 'authorized' sul database 'school'
+REVOKE SELECT, CREATE ON school.* FROM 'authorized' @'localhost';
