@@ -25,10 +25,17 @@ add column subjectid INT(11) NOT NULL DEFAULT(1);
 ALTER TABLE teachers
 ADD CONSTRAINT fk_subjectid FOREIGN KEY (subjectid) REFERENCES subjects (subjectid);
 
-CREATE USER maker IDENTIFIED BY 'maker1234' ->;
+-- Crea un nuovo utente 'maker' che può connettersi solo localmente, con la password 'maker1234'.
+-- NOTA: La sintassi originale '->;' è stata corretta con il terminatore standard ';'.
+CREATE USER 'maker'@'localhost' IDENTIFIED BY 'maker1234';
 
-CREATE USER authorized IDENTIFIED BY 'auth1234';
+-- Crea un nuovo utente 'authorized' che può connettersi solo localmente, con la password 'auth1234'.
+CREATE USER 'authorized'@'localhost' IDENTIFIED BY 'auth1234';
 
-GRANT SELECT, CREATE ON school.* TO maker;
+-- Assegna all'utente 'maker' i permessi per leggere (SELECT) e creare (CREATE) oggetti
+-- su tutte le tabelle (*) del database 'school'.
+GRANT SELECT, CREATE ON school.* TO 'maker'@'localhost';
 
-GRANT SELECT, CREATE ON school.* TO authorized;
+-- Assegna all'utente 'authorized' gli stessi permessi (SELECT, CREATE)
+-- su tutte le tabelle del database 'school'.
+GRANT SELECT, CREATE ON school.* TO 'authorized'@'localhost';
