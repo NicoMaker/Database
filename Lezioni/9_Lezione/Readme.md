@@ -37,6 +37,13 @@ foreign key
 modify
 ```
 
+## Import / Export
+
+- import
+  - importi db
+- export
+  - esporta db
+
 ## Comandi SQL
 
 [File SQL](SQL/file.sql)
