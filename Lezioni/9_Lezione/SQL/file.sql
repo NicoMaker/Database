@@ -14,3 +14,8 @@ alter table students4 ADD
 ALTER TABLE
     students4 RENAME COLUMN firstname TO nome,
     RENAME COLUMN lastname TO cognome;
+
+alter table
+    students4
+modify
+    COLUMN nome nvarchar(40) NOT NULL;
