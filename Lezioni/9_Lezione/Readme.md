@@ -34,6 +34,7 @@ unique
 check
 primary key
 foreign key
+modify
 ```
 
 ## Comandi SQL
