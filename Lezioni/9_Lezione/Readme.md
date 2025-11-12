@@ -15,6 +15,9 @@
     - virgola fissa
       - precisione dopo la virgola
 - caratteri
+  - nvarchar (16 bit)
+    - molti caratteri (tipo uttf8)
+  - char (8 bit)
 - temporali
 
 ## Comandi SQL
