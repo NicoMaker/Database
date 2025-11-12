@@ -56,6 +56,8 @@ REVOKE SELECT, CREATE ON school.* FROM 'maker' @'localhost';
 -- Revoca i permessi di lettura (SELECT) e creazione (CREATE) all'utente 'authorized' sul database 'school'
 REVOKE SELECT, CREATE ON school.* FROM 'authorized' @'localhost';
 
+
+# esporta dati backup
 -- Esegue il backup dello schema (struttura) della tabella 'students' nel database 'school'
 mysqldump -d -u root -p school students > c:/Backup/students_schema.sql
 
@@ -67,3 +69,7 @@ mysqldump -u root -p --all-databases > c:/Backup/all_databases_full_backup.sql
 
 -- Esegue il backup dello schema (struttura) di tutti i database
 mysqldump -d -u root -p --all-databases > c:/Backup/all_databases_schema.sql
+
+
+# importa backup
+mysql -u root -p school < c:/Backup/students_schema.sql
