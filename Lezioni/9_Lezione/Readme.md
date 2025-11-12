@@ -19,6 +19,10 @@
     - molti caratteri (tipo uttf8)
   - char (8 bit)
 - temporali
+  - date
+  - time
+  - datetime
+  - timestamp
 
 ## Comandi SQL
 
