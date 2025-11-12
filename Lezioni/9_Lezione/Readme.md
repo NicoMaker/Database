@@ -24,6 +24,18 @@
   - datetime
   - timestamp
 
+
+## Vincoli
+
+```sql
+not null
+default
+unique
+check
+primary key
+foreign key
+```
+
 ## Comandi SQL
 
 [File SQL](SQL/file.sql)
