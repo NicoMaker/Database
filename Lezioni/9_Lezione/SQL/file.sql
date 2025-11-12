@@ -18,3 +18,6 @@ insert into subjects (title) values ('English');
 DELETE FROM subjects WHERE subjectid = 7;
 
 ALTER TABLE subjects MODIFY COLUMN title VARCHAR(50) UNIQUE;
+
+alter table teachers
+add column subjectid INT(11) NOT NULL DEFAULT(1);
