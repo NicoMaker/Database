@@ -12,6 +12,8 @@
 - numerici
   - interi
   - virgola fissa e mobile
+    - virgola fissa
+      - precisione dopo la virgola
 - caratteri
 - temporali
 
