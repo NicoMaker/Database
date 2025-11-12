@@ -5,3 +5,7 @@ CREATE TABLE
     );
 
 alter table students3 rename students4;
+
+
+alter table students4 ADD
+    lastname  NVARCHAR(30);
