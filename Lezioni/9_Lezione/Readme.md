@@ -24,7 +24,6 @@
   - datetime
   - timestamp
 
-
 ## Vincoli
 
 ```sql

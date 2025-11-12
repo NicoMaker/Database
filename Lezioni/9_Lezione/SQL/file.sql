@@ -55,3 +55,5 @@ REVOKE SELECT, CREATE ON school.* FROM 'maker' @'localhost';
 
 -- Revoca i permessi di lettura (SELECT) e creazione (CREATE) all'utente 'authorized' sul database 'school'
 REVOKE SELECT, CREATE ON school.* FROM 'authorized' @'localhost';
+
+mysqldump -u root -p school students
