@@ -9,3 +9,8 @@ alter table students3 rename students4;
 
 alter table students4 ADD
     lastname  NVARCHAR(30);
+
+
+ALTER TABLE
+    students4 RENAME COLUMN firstname TO nome,
+    RENAME COLUMN lastname TO cognome;
